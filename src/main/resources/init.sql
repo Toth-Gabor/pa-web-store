@@ -12,10 +12,10 @@ CREATE TABLE users
     user_id       SERIAL NOT NULL PRIMARY KEY,
     user_name     TEXT   NOT NULL,
     email         TEXT   NOT NULL UNIQUE,
-    user_password TEXT   NOT NULL,
+    password TEXT   NOT NULL,
     administrator BOOLEAN DEFAULT FALSE,
     CONSTRAINT email_not_empty CHECK (email <> ''),
-    CONSTRAINT pw_not_empty CHECK (user_password <> '')
+    CONSTRAINT pw_not_empty CHECK (password <> '')
 );
 
 CREATE TABLE orders
@@ -58,10 +58,10 @@ CREATE TABLE attributes_table
     FOREIGN KEY (product_id) REFERENCES products (product_id)
 );
 
-INSERT INTO users (user_name, email, user_password, administrator)
+INSERT INTO users (user_name, email, password, administrator)
 VALUES ('Gábor', 'user1@user1', 'user1', TRUE); -- 1
 
-INSERT INTO users (user_name, email, user_password)
+INSERT INTO users (user_name, email, password)
 VALUES ('Péter', 'user2@user2', 'user2'), -- 2
        ('András', 'user2@user3', 'user3'); -- 3
 
