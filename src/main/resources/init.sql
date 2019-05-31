@@ -57,6 +57,7 @@ CREATE TABLE attributes_table
     product_id   INTEGER,
     FOREIGN KEY (product_id) REFERENCES products (product_id)
 );
+
 INSERT INTO users (user_name, email, user_password, administrator)
 VALUES ('Gábor', 'user1@user1', 'user1', TRUE); -- 1
 
