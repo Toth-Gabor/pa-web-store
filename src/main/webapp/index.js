@@ -8,6 +8,7 @@ let loginContentDivEl;
 let profileContentDivEl;
 let backToProfileContentDivEl;
 let logoutContentDivEl;
+let errorContentDivEl;
 
 function newInfo(targetEl, message) {
     newMessage(targetEl, 'info', message);
@@ -98,6 +99,7 @@ function onLoad() {
     profileContentDivEl = document.getElementById('profile-content');
     backToProfileContentDivEl = document.getElementById('back-to-profile-content');
     logoutContentDivEl = document.getElementById('logout-content');
+    errorContentDivEl = document.getElementById('error-content');
 
     const loginButtonEl = document.getElementById('login-button');
     loginButtonEl.addEventListener('click', onLoginButtonClicked);

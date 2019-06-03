@@ -42,11 +42,11 @@
 <div id="registration" class="hidden content">
     <h2>Registration</h2>
     <form id="reg-form" onsubmit="return false;">
-        Name: <input type="text" name="name" required>
+        <input type="text" name="name" placeholder="Name" required>
         <br>
-        E-mail: <input type="text" name="email" required>
+        <input type="text" name="email" placeholder="E-mail" required>
         <br>
-        Password: <input type="password" name="password" required>
+        <input type="password" name="password" placeholder="Password" required>
         <br>
         <button id="registration-button" onclick="onRegistrationClicked()">Submit</button>
     </form>
@@ -55,6 +55,7 @@
 <div id="back-to-profile-content" class="hidden content">
     <button onclick="onBackToProfileClicked();">Back to profile</button>
 </div>
+<div id="error-content" class="hidden content"></div>
 
 <div id="logout-content" class="hidden content">
     <button id="logout-button">Logout</button>

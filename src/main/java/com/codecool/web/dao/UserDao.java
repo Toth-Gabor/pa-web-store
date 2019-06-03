@@ -8,5 +8,8 @@ import java.util.List;
 public interface UserDao {
     
     List<User> findAll() throws SQLException;
+    
     User findByEmail(String email) throws SQLException;
+    
+    void registerUser(String name, String email, String password) throws SQLException;
 }
