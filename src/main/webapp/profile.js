@@ -18,9 +18,7 @@ function onProfileLoad(user) {
     clearMessages();
     showContents(['profile-content', 'logout-content']);
 
-    const userEmailSpandEl = document.getElementById('user-email');
-    const userPasswordSpanEl = document.getElementById('user-password');
+    const userNameSpandEl = document.getElementById('user-name');
 
-    userEmailSpandEl.textContent = user.email;
-    userPasswordSpanEl.textContent = user.password;
+    userNameSpandEl.textContent = user.name;
 }
