@@ -25,5 +25,15 @@ public class DatabaseProductDao extends AbstractDao implements ProductDao {
     public Product findByProductId(int productId) throws SQLException {
         return null;
     }
-
+    
+    private Product fetchProduct(ResultSet resultSet) throws SQLException{
+        int productId = resultSet.getInt("product_id");
+        String productName = resultSet.getString("product_name");
+        String brand = resultSet.getString("brand");
+        String specification = resultSet.getString("specification");
+        String description = resultSet.getString("description");
+        int price = resultSet.getInt("price");
+        String photoUrl = resultSet.getString("");
+        return new Product(productId, productName, brand, specification, description, price, photoUrl);
+    }
 }
