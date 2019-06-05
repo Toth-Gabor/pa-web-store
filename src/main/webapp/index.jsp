@@ -19,9 +19,21 @@
         <script src="${backToProfileScriptUrl}"></script>
         <script src="${registrationScriptUrl}"></script>
         <script src="${logoutScriptUrl}"></script>
-        <title>Web-Store</title>
+        <title>Pa-Web-Store</title>
     </head>
 <body>
+
+<div id="header">
+    <div id="logo">
+        <img src="photos/goatLogo.png">
+    </div>
+
+    <div id="profile-content" class="hidden content">
+
+        <h1>Profile</h1>
+        <p>Name: <span id="user-name"></span></p>
+    </div>
+</div>
 
 <div id="login-content" class="content">
     <h1>Login</h1>
@@ -33,11 +45,7 @@
     </form>
 </div>
 
-<div id="profile-content" class="hidden content">
-    <h1>Profile</h1>
-    <p>Email: <span id="user-email"></span></p>
-    <p>Password: <span id="user-password"></span></p>
-</div>
+
 
 <div id="registration" class="hidden content">
     <h2>Registration</h2>
@@ -55,7 +63,10 @@
 <div id="back-to-profile-content" class="hidden content">
     <button onclick="onBackToProfileClicked();">Back to profile</button>
 </div>
-<div id="error-content" class="hidden content"></div>
+
+<div id="product-content" class="hidden content">
+    <h2>Products</h2>
+</div>
 
 <div id="logout-content" class="hidden content">
     <button id="logout-button">Logout</button>
