@@ -3,10 +3,7 @@ package com.codecool.web.dao.database;
 import com.codecool.web.dao.ProductDao;
 import com.codecool.web.model.Product;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,7 +27,16 @@ public class DatabaseProductDao extends AbstractDao implements ProductDao {
     
     @Override
     public Product findByProductId(int productId) throws SQLException {
-        return null;
+        String sql = "SELECT product_id, product_name, brand, specification, description, price, photo_url FROM products WHERE product_id =?;";
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, productId);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                while (resultSet.next()) {
+                    return fetchProduct(resultSet);
+                }
+                return null;
+            }
+        }
     }
     
     private Product fetchProduct(ResultSet resultSet) throws SQLException {
