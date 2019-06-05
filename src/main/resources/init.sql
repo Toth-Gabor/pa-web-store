@@ -12,7 +12,7 @@ CREATE TABLE users
     user_id       SERIAL NOT NULL PRIMARY KEY,
     user_name     TEXT   NOT NULL,
     email         TEXT   NOT NULL UNIQUE,
-    password TEXT   NOT NULL,
+    password      TEXT   NOT NULL,
     administrator BOOLEAN DEFAULT FALSE,
     CONSTRAINT email_not_empty CHECK (email <> ''),
     CONSTRAINT pw_not_empty CHECK (password <> '')
@@ -81,4 +81,23 @@ VALUES ('EF 50mm F1.8 STM lens', 'Canon',
        ('EF 24-105mm f4L IS II USM', 'Canon',
         'Mount: Canon EF | Effective zoom range: 24-105mm | Lens construction: 17 elements in 12 groups | No. of diaphragm blades: 10 blades | Minimum focus distance: 0.45m | Filter size: 77m | Dimensions: 84x118mm | Weight: 795g',
         'Another Canon standard zoom gets upgraded',
-        1299, 20, 'photos/Canon_EF_24-105mm_f4L_IS_II_USM');
+        1299, 20, 'photos/Canon_EF_24-105mm_f4L_IS_II_USM.jpg'),
+       ('Canon Ef front lens cap', 'Canon', '55mm Front Lens Cap', 'Snap-clips',
+        8, 13, 'photos/Canon_lens_cap.jpg'),
+       ('Canon Ef front lens cap', 'Canon', '58mm Front Lens Cap', 'Snap-clips',
+        9, 15, 'photos/Canon_lens_cap.jpg'),
+       ('Canon Ef front lens cap', 'Canon', '67mm Front Lens Cap', 'Snap-clips',
+        10, 10, 'photos/Canon_lens_cap.jpg'),
+       ('Canon Ef front lens cap', 'Canon', '72mm Front Lens Cap', 'Snap-clips',
+        10, 5, 'photos/Canon_lens_cap.jpg');
+
+
+INSERT INTO attributes_table (att_name, text, num, bool, type, product_id)
+VALUES ('Mount', 'EF', NULL, NULL, 'text', 1),
+       ('Mount', 'EF-S', NULL, NULL, 'text', 2),
+       ('Mount', 'EF', NULL, NULL, 'text', 3),
+       ('Mount', 'EF', NULL, NULL, 'text', 4),
+       ('Diameter', null, 55, null, 'num', 5),
+       ('Diameter', null, 58, null, 'num', 6),
+       ('Diameter', null, 67, null, 'num', 7),
+       ('Diameter', null, 72, null, 'num', 8);
