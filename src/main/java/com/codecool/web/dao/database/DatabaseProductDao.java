@@ -6,6 +6,7 @@ import com.codecool.web.model.Product;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,7 +19,13 @@ public class DatabaseProductDao extends AbstractDao implements ProductDao {
     public List<Product> findAll() throws SQLException {
         List<Product> products = new ArrayList<>();
         String sql = "SELECT product_id, product_name, brand, specification, description, price, photo_url FROM products;";
-        return null;
+        try (Statement statement = connection.createStatement();
+             ResultSet resultSet = statement.executeQuery(sql)) {
+            while (resultSet.next()) {
+                products.add(fetchProduct(resultSet));
+            }
+            return products;
+        }
     }
     
     @Override
@@ -26,7 +33,7 @@ public class DatabaseProductDao extends AbstractDao implements ProductDao {
         return null;
     }
     
-    private Product fetchProduct(ResultSet resultSet) throws SQLException{
+    private Product fetchProduct(ResultSet resultSet) throws SQLException {
         int productId = resultSet.getInt("product_id");
         String productName = resultSet.getString("product_name");
         String brand = resultSet.getString("brand");
