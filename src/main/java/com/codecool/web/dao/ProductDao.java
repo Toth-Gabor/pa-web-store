@@ -11,4 +11,10 @@ public interface ProductDao {
     
     Product findByProductId(int productId) throws SQLException;
     
+    void addProduct(String name,String brand, String specification, String description, int price, String photoUrl) throws SQLException;
+    
+    void updateProduct(Product product) throws SQLException;
+    
+    void deleteProduct(int productId) throws SQLException;
+    
 }
