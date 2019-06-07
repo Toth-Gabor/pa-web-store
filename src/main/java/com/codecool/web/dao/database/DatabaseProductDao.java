@@ -8,6 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DatabaseProductDao extends AbstractDao implements ProductDao {
+    
+    private String sql;
+    
     DatabaseProductDao(Connection connection) {
         super(connection);
     }
@@ -15,7 +18,7 @@ public class DatabaseProductDao extends AbstractDao implements ProductDao {
     @Override
     public List<Product> findAll() throws SQLException {
         List<Product> products = new ArrayList<>();
-        String sql = "SELECT product_id, product_name, brand, specification, description, price, photo_url FROM products;";
+        sql = "SELECT product_id, product_name, brand, specification, description, price, photo_url FROM products;";
         try (Statement statement = connection.createStatement();
              ResultSet resultSet = statement.executeQuery(sql)) {
             while (resultSet.next()) {
@@ -27,7 +30,7 @@ public class DatabaseProductDao extends AbstractDao implements ProductDao {
     
     @Override
     public Product findByProductId(int productId) throws SQLException {
-        String sql = "SELECT product_id, product_name, brand, specification, description, price, photo_url FROM products WHERE product_id =?;";
+        sql = "SELECT product_id, product_name, brand, specification, description, price, photo_url FROM products WHERE product_id =?;";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setInt(1, productId);
             try (ResultSet resultSet = statement.executeQuery()) {
@@ -37,6 +40,30 @@ public class DatabaseProductDao extends AbstractDao implements ProductDao {
                 return null;
             }
         }
+    }
+    
+    @Override
+    public void addProduct(String name, String brand, String specification, String description, int price, String photoUrl) throws SQLException {
+        sql = "INSERT INTO products (product_name, brand, specification, description, price, photo_url) VALUES (?, ?, ?, ?, ?, ?);";
+        try (PreparedStatement statement = connection.prepareStatement(sql)){
+            statement.setString(1, name);
+            statement.setString(2, brand);
+            statement.setString(3, specification);
+            statement.setString(4, description);
+            statement.setInt(5, price);
+            statement.setString(6, photoUrl);
+            statement.execute();
+        }
+    }
+    
+    @Override
+    public void updateProduct(Product product) throws SQLException {
+    
+    }
+    
+    @Override
+    public void deleteProduct(int productId) throws SQLException {
+    
     }
     
     private Product fetchProduct(ResultSet resultSet) throws SQLException {
