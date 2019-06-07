@@ -18,7 +18,7 @@ public class DatabaseProductDao extends AbstractDao implements ProductDao {
     @Override
     public List<Product> findAll() throws SQLException {
         List<Product> products = new ArrayList<>();
-        sql = "SELECT product_id, product_name, brand, specification, description, price, photo_url FROM products;";
+        sql = "SELECT product_id, product_name, brand, specification, description, price, quantity, photo_url FROM products;";
         try (Statement statement = connection.createStatement();
              ResultSet resultSet = statement.executeQuery(sql)) {
             while (resultSet.next()) {
@@ -43,27 +43,49 @@ public class DatabaseProductDao extends AbstractDao implements ProductDao {
     }
     
     @Override
-    public void addProduct(String name, String brand, String specification, String description, int price, String photoUrl) throws SQLException {
-        sql = "INSERT INTO products (product_name, brand, specification, description, price, photo_url) VALUES (?, ?, ?, ?, ?, ?);";
-        try (PreparedStatement statement = connection.prepareStatement(sql)){
+    public void addProduct(String name, String brand, String specification, String description, int price, int quantity, String photoUrl) throws SQLException {
+        sql = "INSERT INTO products (product_name, brand, specification, description, price, quantity, photo_url) VALUES (?, ?, ?, ?, ?, ?);";
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setString(1, name);
             statement.setString(2, brand);
             statement.setString(3, specification);
             statement.setString(4, description);
             statement.setInt(5, price);
-            statement.setString(6, photoUrl);
+            statement.setInt(6, quantity);
+            statement.setString(7, photoUrl);
             statement.execute();
         }
     }
     
     @Override
     public void updateProduct(Product product) throws SQLException {
+        sql = "UPDATE products SET product_name = ?, brand = ?, specification = ?, " +
+                "description = ?, price = ?, quantity = ?, photo_url = '7' WHERE product_id = ?;";
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setString(1, product.getName());
+            statement.setString(2, product.getBrand());
+            statement.setString(3, product.getSpecification());
+            statement.setString(4, product.getDescription());
+            statement.setInt(5, product.getPrice());
+            statement.setInt(6, product.getQuantity());
+            statement.setString(7, product.getPhotoUrl());
+            statement.execute();
+        }
+    }
     
+    private void buyProduct(int productId) throws SQLException {
+        sql = "UPDATE products SET quantity = quantity - 1 WHERE product_id = ?;";
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, productId);
+            statement.execute();
+        }
     }
     
     @Override
-    public void deleteProduct(int productId) throws SQLException {
-    
+    public void buyProduct(int productId, int quantity) throws SQLException {
+        for (int i = 0; i < quantity; i++) {
+            buyProduct(productId);
+        }
     }
     
     private Product fetchProduct(ResultSet resultSet) throws SQLException {
@@ -73,7 +95,8 @@ public class DatabaseProductDao extends AbstractDao implements ProductDao {
         String specification = resultSet.getString("specification");
         String description = resultSet.getString("description");
         int price = resultSet.getInt("price");
+        int quantity = resultSet.getInt("quantity");
         String photoUrl = resultSet.getString("");
-        return new Product(productId, productName, brand, specification, description, price, photoUrl);
+        return new Product(productId, productName, brand, specification, description, price, quantity, photoUrl);
     }
 }
