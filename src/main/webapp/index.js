@@ -9,6 +9,9 @@ let profileContentDivEl;
 let backToProfileContentDivEl;
 let logoutContentDivEl;
 let errorContentDivEl;
+let topNavDivEl;
+let registrationDivEl;
+let productContentDivEL;
 
 function newInfo(targetEl, message) {
     newMessage(targetEl, 'info', message);
@@ -41,6 +44,7 @@ function showContents(ids) {
     const contentEls = document.getElementsByClassName('content');
     for (let i = 0; i < contentEls.length; i++) {
         const contentEl = contentEls[i];
+        console.log(contentEls.id);
         if (ids.includes(contentEl.id)) {
             contentEl.classList.remove('hidden');
         } else {
@@ -95,7 +99,10 @@ function setUnauthorized() {
 }
 
 function onLoad() {
+    topNavDivEl = document.getElementById("topnav");
     loginContentDivEl = document.getElementById('login-content');
+    registrationDivEl = document.getElementById("registration");
+    productContentDivEL = document.getElementById("product-content");
     profileContentDivEl = document.getElementById('profile-content');
     backToProfileContentDivEl = document.getElementById('back-to-profile-content');
     logoutContentDivEl = document.getElementById('logout-content');
