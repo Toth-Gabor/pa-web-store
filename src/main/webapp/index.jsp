@@ -49,7 +49,7 @@
         <p>Password</p>
         <input type="password" name="password" placeholder="Enter password">
         <div id="button">
-            <button id="login-button">Login</button>
+            <button id="login-button" onclick="onLoginButtonClicked()">Login</button>
             <button id="register-button" onclick="openRegistration()">Register</button>
         </div>
     </form>

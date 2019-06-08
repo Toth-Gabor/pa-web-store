@@ -108,11 +108,11 @@ function onLoad() {
     logoutContentDivEl = document.getElementById('logout-content');
     errorContentDivEl = document.getElementById('error-content');
 
-    const loginButtonEl = document.getElementById('login-button');
+    /*const loginButtonEl = document.getElementById('login-button');
     loginButtonEl.addEventListener('click', onLoginButtonClicked);
 
     const logoutButtonEl = document.getElementById('logout-button');
-    logoutButtonEl.addEventListener('click', onLogoutButtonClicked);
+    logoutButtonEl.addEventListener('click', onLogoutButtonClicked);*/
 
     if (hasAuthorization()) {
         onProfileLoad(getAuthorization());
