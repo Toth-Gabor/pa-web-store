@@ -1,24 +1,10 @@
-function onShopsClicked() {
-    const xhr = new XMLHttpRequest();
-    xhr.addEventListener('load', onShopsResponse);
-    xhr.addEventListener('error', onNetworkError);
-    xhr.open('GET', 'protected/shops');
-    xhr.send();
-}
-
-function onCouponsClicked() {
-    const xhr = new XMLHttpRequest();
-    xhr.addEventListener('load', onCouponsResponse);
-    xhr.addEventListener('error', onNetworkError);
-    xhr.open('GET', 'protected/coupons');
-    xhr.send();
-}
-
 function onProfileLoad(user) {
     clearMessages();
-    showContents(['profile-content', 'logout-content']);
-
     const userNameSpandEl = document.getElementById('user-name');
-
-    userNameSpandEl.textContent = user.name;
+    showContents('topnav', 'profile-content', 'product-content', 'logout-content');
+    if ("user" === typeof user){
+        userNameSpandEl.textContent = user.name;
+    } else {
+        userNameSpandEl.textContent = "Not logged in";
+    }
 }
