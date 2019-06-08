@@ -1,13 +1,3 @@
-function onLoginResponse() {
-    if (this.status === OK) {
-        const user = JSON.parse(this.responseText);
-        setAuthorization(user);
-        onProfileLoad(user);
-    } else {
-        onOtherResponse(loginContentDivEl, this);
-    }
-}
-
 function onLoginButtonClicked() {
     const loginFormEl = document.forms['login-form'];
 
@@ -26,4 +16,21 @@ function onLoginButtonClicked() {
     xhr.addEventListener('error', onNetworkError);
     xhr.open('POST', 'login');
     xhr.send(params);
+}
+
+function onLoginResponse() {
+    if (this.status === OK) {
+        const user = JSON.parse(this.responseText);
+        let logInOutButtonEl = document.getElementById("login-logout");
+        logInOutButtonEl.textContent = "logOut";
+        logInOutButtonEl.setAttribute("onclick", "onLogoutButtonClicked()");
+        setAuthorization(user);
+        onProfileLoad(user);
+    } else {
+        onOtherResponse(loginContentDivEl, this);
+    }
+}
+
+function openLoginForm() {
+    showContents('login-content');
 }
