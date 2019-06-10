@@ -11,7 +11,7 @@ public class DatabaseProductDao extends AbstractDao implements ProductDao {
     
     private String sql;
     
-    DatabaseProductDao(Connection connection) {
+    public DatabaseProductDao(Connection connection) {
         super(connection);
     }
     

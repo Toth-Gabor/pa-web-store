@@ -14,7 +14,7 @@ public class DatabaseAttributeDao extends AbstractDao implements AttributeDao {
     
     private String sql;
     
-    DatabaseAttributeDao(Connection connection) {
+    public DatabaseAttributeDao(Connection connection) {
         super(connection);
     }
     
