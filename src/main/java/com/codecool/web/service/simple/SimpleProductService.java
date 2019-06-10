@@ -31,4 +31,9 @@ public class SimpleProductService implements ProductService {
         List<Attribute> attributeList = attributeDao.findAllAttributesByProductId(productId);
         return new ProductDto(product, attributeList);
     }
+    
+    @Override
+    public Product getProduct(int productId) throws SQLException {
+        return productDao.findByProductId(productId);
+    }
 }
