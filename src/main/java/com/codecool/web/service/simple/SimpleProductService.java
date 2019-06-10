@@ -26,14 +26,14 @@ public class SimpleProductService implements ProductService {
     }
     
     @Override
-    public ProductDto getProductWithAttributes(int productId) throws SQLException {
-        Product product = productDao.findByProductId(productId);
-        List<Attribute> attributeList = attributeDao.findAllAttributesByProductId(productId);
+    public ProductDto getProductWithAttributes(String productId) throws SQLException {
+        Product product = productDao.findByProductId(Integer.parseInt(productId));
+        List<Attribute> attributeList = attributeDao.findAllAttributesByProductId(Integer.parseInt(productId));
         return new ProductDto(product, attributeList);
     }
     
     @Override
-    public Product getProduct(int productId) throws SQLException {
-        return productDao.findByProductId(productId);
+    public Product getProduct(String productId) throws SQLException {
+        return productDao.findByProductId(Integer.parseInt(productId));
     }
 }

@@ -10,7 +10,7 @@ public interface ProductService {
     
     List<Product> getAllProducts() throws SQLException;
     
-    ProductDto getProductWithAttributes(int productId) throws SQLException;
+    ProductDto getProductWithAttributes(String productId) throws SQLException;
     
-    Product getProduct(int productId) throws SQLException;
+    Product getProduct(String productId) throws SQLException;
 }
