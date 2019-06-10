@@ -24,8 +24,8 @@ function onLoginResponse() {
         let logInOutButtonEl = document.getElementById("login-logout");
         logInOutButtonEl.textContent = "logOut";
         logInOutButtonEl.setAttribute("onclick", "onLogoutButtonClicked()");
-        showContents('topnav', 'profile-content', 'product-content', 'logout-content');
         setAuthorization(user);
+        showContents('topnav', 'profile-content', 'product-content');
         onProfileLoad(user);
     } else {
         onOtherResponse(loginContentDivEl, this);
