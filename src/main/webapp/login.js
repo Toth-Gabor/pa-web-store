@@ -25,6 +25,7 @@ function onLoginResponse() {
         logInOutButtonEl.textContent = "logOut";
         logInOutButtonEl.setAttribute("onclick", "onLogoutButtonClicked()");
         setAuthorization(user);
+        loadAllProducts();
         showContents('topnav', 'profile-content', 'product-content');
         onProfileLoad(user);
     } else {

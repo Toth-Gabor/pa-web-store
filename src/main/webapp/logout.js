@@ -6,9 +6,12 @@ function onLogoutResponse() {
         let logInOutButtonEl = document.getElementById("login-logout");
         logInOutButtonEl.textContent = "logIn";
         logInOutButtonEl.setAttribute("onclick", "openLoginForm()");
-        showContents( 'topnav', 'product-content');
+        const userNameSpandEl = document.getElementById('user-name');
+        userNameSpandEl.textContent = "Not logged in";
+        loadAllProducts()
+        showContents( 'topnav', 'profile-content', 'product-content');
     } else {
-        onOtherResponse(logoutContentDivEl, this);
+        onOtherResponse(productContentDivEL, this);
     }
 }
 
