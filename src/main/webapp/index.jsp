@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <c:url value="/style.css" var="styleUrl"/>
     <c:url value="/index.js" var="indexScriptUrl"/>
+    <c:url value="/allProducts.js" var="allProductsScriptUrl"/>
     <c:url value="/login.js" var="loginScriptUrl"/>
     <c:url value="/profile.js" var="profileScriptUrl"/>
     <c:url value="/registration.js" var="registrationScriptUrl"/>
@@ -14,6 +15,7 @@
     <c:url value="/logout.js" var="logoutScriptUrl"/>
     <link rel="stylesheet" type="text/css" href="${styleUrl}">
     <script src="${indexScriptUrl}"></script>
+    <script src="${allProductsScriptUrl}"></script>
     <script src="${loginScriptUrl}"></script>
     <script src="${profileScriptUrl}"></script>
     <script src="${backToProfileScriptUrl}"></script>
@@ -72,12 +74,7 @@
     <button onclick="onBackToProfileClicked();">Back to profile</button>
 </div>
 
-<div id="product-content" class="content">
-    <h2>Products</h2>
-    <dt>Csiga</dt>
-    <dd>Biga</dd>
-    <dd>Biga</dd>
-    <dd>Biga</dd>
-</div>
+<div id="product-content" class="content"></div>
+
 </body>
 </html>

@@ -7,7 +7,6 @@ const INTERNAL_SERVER_ERROR = 500;
 let loginContentDivEl;
 let profileContentDivEl;
 let backToProfileContentDivEl;
-let logoutContentDivEl;
 let errorContentDivEl;
 let topNavDivEl;
 let registrationDivEl;
@@ -105,7 +104,6 @@ function onLoad() {
     productContentDivEL = document.getElementById("product-content");
     profileContentDivEl = document.getElementById('profile-content');
     backToProfileContentDivEl = document.getElementById('back-to-profile-content');
-    logoutContentDivEl = document.getElementById('logout-content');
     errorContentDivEl = document.getElementById('error-content');
 
     /*const loginButtonEl = document.getElementById('login-button');
@@ -113,7 +111,7 @@ function onLoad() {
 
     const logoutButtonEl = document.getElementById('logout-button');
     logoutButtonEl.addEventListener('click', onLogoutButtonClicked);*/
-
+    loadAllProducts();
     if (hasAuthorization()) {
         onProfileLoad(getAuthorization());
     }
