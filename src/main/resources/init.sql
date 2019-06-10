@@ -112,6 +112,7 @@ VALUES ('EF 50mm F1.8 STM lens', 'Canon',
 
 INSERT INTO attributes_table (att_name, text, num, bool, type, product_id)
 VALUES ('Mount', 'EF', NULL, NULL, 'text', 1),
+       ('test', 'test1', NULL, NULL, 'text', 1),
        ('Mount', 'EF-S', NULL, NULL, 'text', 2),
        ('Mount', 'EF', NULL, NULL, 'text', 3),
        ('Mount', 'EF', NULL, NULL, 'text', 4),
