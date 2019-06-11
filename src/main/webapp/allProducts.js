@@ -2,7 +2,7 @@ function loadAllProducts() {
     const xhr = new XMLHttpRequest();
     xhr.addEventListener('load', allProductsResponse);
     xhr.addEventListener('error', onNetworkError);
-    xhr.open('GET', 'products?');
+    xhr.open('GET', 'products');
     xhr.send();
 }
 
@@ -40,7 +40,7 @@ function appendProducts(product) {
     let priceDivEl = document.createElement("div"); //price
     let productPricePEl = document.createElement("p");
 
-    productPhotoImageEl.src = "N/A";//product.photoUrl;
+    productPhotoImageEl.src = product.photoUrl;
     photoDivEL.appendChild(productPhotoImageEl);
 
     productBrandPEl.textContent = product.brand;
@@ -57,4 +57,8 @@ function appendProducts(product) {
     productDivEL.appendChild(productAEl);
     productContentDivEL.appendChild(productDivEL);
 
+}
+
+function onProductClicked() {
+    
 }
