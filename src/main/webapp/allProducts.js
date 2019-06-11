@@ -42,7 +42,7 @@ function appendProducts(product) {
     let productQuantityPEl = document.createElement("p");
 
 
-    productPhotoImageEl.src = product.photoUrl;
+    productPhotoImageEl.src = product.photoUrl;eft: 10px
     photoDivEL.appendChild(productPhotoImageEl);
 
     productBrandPEl.textContent = product.brand;
