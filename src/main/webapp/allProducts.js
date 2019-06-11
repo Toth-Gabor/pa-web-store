@@ -24,21 +24,23 @@ function onProductListLoad(productsList) {
 }
 
 function appendProducts(product) {
-    let productDivEL = document.createElement("div"); //product
+    let productDivEL = document.createElement("div"); // product
     productDivEL.id = "product-div";
-    let productAEl = document.createElement("a");
-    productAEl.dataset.productId = product.id;
-    productAEl.href = 'javascript:void(0);';
-    productAEl.addEventListener('click', onProductClicked);
-    let photoDivEL = document.createElement("div"); //photo
+    productDivEL.addEventListener('click', onProductClicked);
+    productDivEL.dataset.productId = product.id;
+
+    let photoDivEL = document.createElement("div"); // photo
     photoDivEL.id =  "photo";
     let productPhotoImageEl = document.createElement("img");
-    let brandDivEL = document.createElement("div"); //brand
+    let brandDivEL = document.createElement("div"); // brand
     let productBrandPEl = document.createElement("p")
-    let nameDivEl = document.createElement("div"); //name
+    let nameDivEl = document.createElement("div"); // name
     let productNamePEl = document.createElement("p");
-    let priceDivEl = document.createElement("div"); //price
+    let priceDivEl = document.createElement("div"); // price
     let productPricePEl = document.createElement("p");
+    let quantityDivEl = document.createElement("div"); // quantity
+    let productQuantityPEl = document.createElement("p");
+
 
     productPhotoImageEl.src = product.photoUrl;
     photoDivEL.appendChild(productPhotoImageEl);
@@ -52,9 +54,11 @@ function appendProducts(product) {
     productPricePEl.textContent = "$ " + product.price + ".00";
     priceDivEl.appendChild(productPricePEl);
 
-    productAEl.append(photoDivEL, brandDivEL, nameDivEl, priceDivEl)
+    productQuantityPEl.textContent = "In store: " + product.quantity;
+    quantityDivEl.appendChild(productQuantityPEl);
 
-    productDivEL.appendChild(productAEl);
+    productDivEL.append(photoDivEL, brandDivEL, nameDivEl, quantityDivEl, priceDivEl)
+
     productContentDivEL.appendChild(productDivEL);
 
 }
