@@ -8,6 +8,7 @@
     <c:url value="/style.css" var="styleUrl"/>
     <c:url value="/index.js" var="indexScriptUrl"/>
     <c:url value="/allProducts.js" var="allProductsScriptUrl"/>
+    <c:url value="/product.js" var="productScriptUrl"/>
     <c:url value="/login.js" var="loginScriptUrl"/>
     <c:url value="/profile.js" var="profileScriptUrl"/>
     <c:url value="/registration.js" var="registrationScriptUrl"/>
@@ -16,6 +17,7 @@
     <link rel="stylesheet" type="text/css" href="${styleUrl}">
     <script src="${indexScriptUrl}"></script>
     <script src="${allProductsScriptUrl}"></script>
+    <script src="${productScriptUrl}"></script>
     <script src="${loginScriptUrl}"></script>
     <script src="${profileScriptUrl}"></script>
     <script src="${backToProfileScriptUrl}"></script>

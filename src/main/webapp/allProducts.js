@@ -58,7 +58,3 @@ function appendProducts(product) {
     productContentDivEL.appendChild(productDivEL);
 
 }
-
-function onProductClicked() {
-    
-}
