@@ -30,7 +30,7 @@ public class DatabaseProductDao extends AbstractDao implements ProductDao {
     
     @Override
     public Product findByProductId(int productId) throws SQLException {
-        sql = "SELECT product_id, product_name, brand, specification, description, price, photo_url FROM products WHERE product_id =?;";
+        sql = "SELECT product_id, product_name, brand, specification, description, price, quantity, photo_url FROM products WHERE product_id =?;";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setInt(1, productId);
             try (ResultSet resultSet = statement.executeQuery()) {

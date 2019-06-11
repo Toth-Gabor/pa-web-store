@@ -20,7 +20,7 @@ public class DatabaseAttributeDao extends AbstractDao implements AttributeDao {
     
     @Override
     public List<Attribute> findAllAttributesByProductId(int productId) throws SQLException {
-        sql = "SELECT att_name, text, num, bool FROM attributes_table WHERE product_id = ?;";
+        sql = "SELECT attribute_id, att_name, text, num, bool FROM attributes_table WHERE product_id = ?;";
         List<Attribute> attributeList = new ArrayList<>();
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setInt(1, productId);
