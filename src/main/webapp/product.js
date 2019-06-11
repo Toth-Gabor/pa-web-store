@@ -11,3 +11,17 @@ function onProductClicked() {
     xhr.send(params);
 }
 
+function onProductResponse() {
+    if (this.status === OK) {
+        onProductLoad(JSON.parse(this.responseText));
+    } else {
+        onOtherResponse(productContentDivEL, this);
+    }
+}
+
+function onProductLoad(product) {
+    console.log(product)
+    //showContents(['topnav', 'profile-content', 'product-content']);
+
+
+}
