@@ -32,8 +32,10 @@ function onLoginResponse() {
             menuDivEl.appendChild(menuAEl);
         }
         let logInOutButtonEl = document.getElementById("login-logout");
-        logInOutButtonEl.textContent = "logOut";
         logInOutButtonEl.setAttribute("onclick", "onLogoutButtonClicked()");
+        let loginOutSpanEl = document.getElementById("login-logot-text");
+        loginOutSpanEl.textContent = " logOut";
+
         setAuthorization(user);
         loadAllProducts();
         onProfileLoad(user);

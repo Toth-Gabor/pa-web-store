@@ -35,11 +35,11 @@
         <a class="active " href="#home" onclick="onHomeButtonClicked()"><i class="fa fa-home"></i> Home</a>
         <a href="#news">News</a>
         <a href="#contact">Contact</a>
-        <a id="login-logout" href="#login" onclick="openLoginForm()"><i class="fa fa-user"></i> login</a>
+        <a id="login-logout" href="#login" onclick="openLoginForm()"><i class="fa fa-user"></i><span id="login-logot-text"> login</span></a>
     </div>
 
     <div id="cart">
-        <a href="#cart" ><i class="fa fa-cart-plus"></i> Cart</a>
+        <a href="#cart" ><i class="fa fa-cart-plus"></i><span id="items"> Empty</span></a>
     </div>
 </div>
 
