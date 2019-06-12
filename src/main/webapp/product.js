@@ -40,9 +40,9 @@ function onProductLoad(productDto) {
     sideWrapperDivEl.setAttribute("id", "details-wrapper");
 
     let brandDivEL = document.createElement("div"); // brand
-    let productBrandPEl = document.createElement("p")
-    productBrandPEl.textContent = product.brand;
-    brandDivEL.appendChild(productBrandPEl);
+    let productBrandH2El = document.createElement("h2")
+    productBrandH2El.textContent = product.brand;
+    brandDivEL.appendChild(productBrandH2El);
     
     let nameDivEl = document.createElement("div"); // name
     let productNamePEl = document.createElement("p");
@@ -72,18 +72,18 @@ function onProductLoad(productDto) {
 
     let descriptionDivEl = document.createElement("div"); // description
     let productDescrPEl = document.createElement("p");
-    let descriptionPEl = document.createElement("p");
-    descriptionPEl.textContent = "Description:";
+    let descriptionH2El = document.createElement("h2");
+    descriptionH2El.textContent = "Description:";
     productDescrPEl.textContent = product.description;
-    descriptionDivEl.append(descriptionPEl, productDescrPEl);
+    descriptionDivEl.append(descriptionH2El, productDescrPEl);
 
     let specificationDivEl = document.createElement("div"); // specification
     let productSpecPEl = document.createElement("p");
-    let specificationPEl = document.createElement("p");
-    specificationPEl.textContent = "Specification:";
+    let specificationH2El = document.createElement("h2");
+    specificationH2El.textContent = "Specification:";
     productSpecPEl.textContent = product.specification;
 
-    specificationDivEl.append(specificationPEl, productSpecPEl);
+    specificationDivEl.append(specificationH2El, productSpecPEl);
 
     bottomWrapperDivEl.append(descriptionDivEl, specificationDivEl);
     productDetailsDiv.append(photoDivEL, sideWrapperDivEl);

@@ -3,6 +3,8 @@
 <!doctype html>
 <html lang="en">
 <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <c:url value="/style.css" var="styleUrl"/>
@@ -28,14 +30,14 @@
 <body>
 <div id="topnav" class="content">
     <div id="menu">
-        <a class="active" href="#home" onclick="onHomeButtonClicked()">Home</a>
+        <a class="active " href="#home" onclick="onHomeButtonClicked()"><i class="fa fa-home"></i> Home</a>
         <a href="#news">News</a>
         <a href="#contact">Contact</a>
-        <a id="login-logout" href="#login" onclick="openLoginForm()">login</a>
+        <a id="login-logout" href="#login" onclick="openLoginForm()"><i class="fa fa-user"></i> login</a>
     </div>
 
     <div id="cart">
-        <a href="#cart">Cart</a>
+        <a href="#cart" ><i class="fa fa-cart-plus"></i> Cart</a>
     </div>
 </div>
 
@@ -53,8 +55,9 @@
         <p>Password</p>
         <input type="password" name="password" placeholder="Enter password">
         <div id="button">
-            <button id="login-button" onclick="onLoginButtonClicked()">Login</button>
-            <button id="register-button" onclick="openRegistration()">Register</button>
+            <button id="login-button" onclick="onLoginButtonClicked()"><i class="fa fa-user"></i> Login</button>
+            <button id="register-button" onclick="openRegistration()"><i class="fa fa-user-plus"></i> Register</button>
+            <button id="back-button" onclick="onHomeButtonClicked()"><i class="fa fa-home"></i> Back</button>
         </div>
     </form>
 </div>
