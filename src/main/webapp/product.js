@@ -1,8 +1,5 @@
 function onProductClicked() {
     const productId = this.dataset.productId;
-    console.log(productId);
-    localStorage.setItem("product-id", productId);
-
     const params = new URLSearchParams();
     params.append("productId", productId);
     console.log(params.toString());
@@ -57,15 +54,23 @@ function onProductLoad(productDto) {
     let attributesDivEl = createAttributesElements(attributesList); // attributes
 
     let priceDivEl = document.createElement("div"); // price
+    priceDivEl.setAttribute("id", "price-div");
     let productPricePEl = document.createElement("p");
     productPricePEl.textContent = "$ " + product.price + ".00";
     priceDivEl.appendChild(productPricePEl);
 
-    let buyProductButtonEL = document.createElement("button"); // buy button
-    buyProductButtonEL.textContent = "Add to Cart";
-    buyProductButtonEL.setAttribute("onclick", "onBuyProductClicked()");
+    let selectQuantityDivEl = createSelectQuantityFormDiv(product.quantity); // select quantity
+    selectQuantityDivEl.setAttribute("id", "select-quantity-div");
 
-    sideWrapperDivEl.append(brandDivEL, nameDivEl, quantityDivEl, attributesDivEl, priceDivEl, buyProductButtonEL); // add detail dives
+    let addToCartButtonDivEl = document.createElement("div"); // add to cart button
+    addToCartButtonDivEl.setAttribute("id", "add-to-cart");
+    let addToCartButtonEL = document.createElement("p");
+    addToCartButtonEL.setAttribute("id", "add-to-cart-button");
+    addToCartButtonEL.textContent = "Add to Cart";
+    addToCartButtonEL.setAttribute("onclick", "onAddToCartClicked()");
+    addToCartButtonDivEl.appendChild(addToCartButtonEL);
+
+    sideWrapperDivEl.append(brandDivEL, nameDivEl, quantityDivEl, attributesDivEl, priceDivEl, selectQuantityDivEl, addToCartButtonDivEl); // add detail dives
 
     let bottomWrapperDivEl = document.createElement("div");
     bottomWrapperDivEl.setAttribute("id", "desc-spec-wrapper");
@@ -108,8 +113,31 @@ function createAttributesElements(attributesList) {
     }
     return attributesDivEl;
 }
+function createSelectQuantityFormDiv(quantity) {
+    let quantityDivEl = document.createElement("div"); // div
+    let quantityFormEl = document.createElement("form"); // form
+    let onSubmit = document.createAttribute("onsubmit");
+    onSubmit.value = "return false";
+    quantityFormEl.setAttributeNode(onSubmit);
+
+    let selectEl = document.createElement("select"); // select
+    for (let i = 0; i < quantity; i++) {
+        let optionEl = document.createElement("option");
+        optionEl.setAttribute("value", "quantity-i");
+        let tempQuantity = quantity-i;
+        optionEl.textContent = tempQuantity.toString();
+        selectEl.appendChild(optionEl);
+    }
+    quantityDivEl.append(quantityFormEl, selectEl);
+    return quantityDivEl;
+}
 
 function onBuyProductClicked() {
+
+}
+
+function onAddToCartClicked() {
     alert("added to cart!");
+
 }
 
