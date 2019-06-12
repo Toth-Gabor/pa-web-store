@@ -133,7 +133,7 @@ h1 {
 
 #product-div {
     background-color: white;
-    height: 250px;
+    height: 300px;
     width: 20%;
     float: left;
     padding: 10px;
@@ -161,11 +161,11 @@ h1 {
 #details-wrapper {
     margin: 10px;
     float: left;
-    width: 40%;
+    width: 20%;
 }
 #desc-spec-wrapper {
     float: left;
-    max-width: 60%;
+    max-width: 40%;
     position: center;
 }
 

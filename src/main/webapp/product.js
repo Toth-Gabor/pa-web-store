@@ -40,9 +40,9 @@ function onProductLoad(productDto) {
     sideWrapperDivEl.setAttribute("id", "details-wrapper");
 
     let brandDivEL = document.createElement("div"); // brand
-    let productBrandH1El = document.createElement("h1")
-    productBrandH1El.textContent = product.brand;
-    brandDivEL.appendChild(productBrandH1El);
+    let productBrandPEl = document.createElement("p")
+    productBrandPEl.textContent = product.brand;
+    brandDivEL.appendChild(productBrandPEl);
     
     let nameDivEl = document.createElement("div"); // name
     let productNamePEl = document.createElement("p");
@@ -54,48 +54,36 @@ function onProductLoad(productDto) {
     productQuantityPEl.textContent = "In stock: " + product.quantity;
     quantityDivEl.appendChild(productQuantityPEl);
     
+    let attributesDivEl = createAttributesElements(attributesList); // attributes
+
     let priceDivEl = document.createElement("div"); // price
     let productPricePEl = document.createElement("p");
     productPricePEl.textContent = "$ " + product.price + ".00";
     priceDivEl.appendChild(productPricePEl);
-    
+
     let buyProductButtonEL = document.createElement("button"); // buy button
     buyProductButtonEL.textContent = "Add to Cart";
     buyProductButtonEL.setAttribute("onclick", "onBuyProductClicked()");
-    
-    let attributesDivEl = document.createElement("div"); // attributes
-    for (let i = 0; i <attributesList.length; i++) {
-        let attrPEl = document.createElement("p");
-        attrPEl.textContent = attributesList[i].name;
-        let attrPEl2 = document.createElement("p");
-        attrPEl2.textContent = attributesList[i].name;
-        let attrSpanEl = document.createElement("span");
-        attrSpanEl.textContent = " :" + attributesList[i].text;
-        let attrSpanEl2 = document.createElement("span");
-        attrSpanEl2.textContent = " :" + attributesList[i].num;
-        attrPEl.appendChild(attrSpanEl);
-        attrPEl2.appendChild(attrSpanEl2);
-        attributesDivEl.append(attrPEl, attrPEl2);
-    }
-    sideWrapperDivEl.append(brandDivEL, nameDivEl, quantityDivEl, priceDivEl, buyProductButtonEL, attributesDivEl); // add detail dives
+
+    sideWrapperDivEl.append(brandDivEL, nameDivEl, quantityDivEl, attributesDivEl, priceDivEl, buyProductButtonEL); // add detail dives
 
     let bottomWrapperDivEl = document.createElement("div");
     bottomWrapperDivEl.setAttribute("id", "desc-spec-wrapper");
 
     let descriptionDivEl = document.createElement("div"); // description
     let productDescrPEl = document.createElement("p");
-    let descriptionH1El = document.createElement("h1");
-    descriptionH1El.textContent = "Description:";
+    let descriptionPEl = document.createElement("p");
+    descriptionPEl.textContent = "Description:";
     productDescrPEl.textContent = product.description;
-    descriptionDivEl.append(descriptionH1El, productDescrPEl);
+    descriptionDivEl.append(descriptionPEl, productDescrPEl);
 
     let specificationDivEl = document.createElement("div"); // specification
     let productSpecPEl = document.createElement("p");
-    let specificationH1El = document.createElement("h1");
-    specificationH1El.textContent = "Specification:";
+    let specificationPEl = document.createElement("p");
+    specificationPEl.textContent = "Specification:";
     productSpecPEl.textContent = product.specification;
 
-    specificationDivEl.append(specificationH1El, productSpecPEl);
+    specificationDivEl.append(specificationPEl, productSpecPEl);
 
     bottomWrapperDivEl.append(descriptionDivEl, specificationDivEl);
     productDetailsDiv.append(photoDivEL, sideWrapperDivEl);
@@ -104,6 +92,24 @@ function onProductLoad(productDto) {
     showContents(['topnav', 'profile-content', 'product-content']);
 }
 
+function createAttributesElements(attributesList) {
+    let attributesDivEl = document.createElement("div");
+    for (let i = 0; i <attributesList.length; i++) {
+        let attrPEl = document.createElement("p");
+        attrPEl.textContent = attributesList[i].name;
+        let attrSpanEl = document.createElement("span");
+        if (attributesList[i].text != null) {
+            attrSpanEl.textContent = " :" + attributesList[i].text;
+        } else if (attributesList[i].num != null) {
+            attrSpanEl.textContent = " :" + attributesList[i].num;
+        }
+        attrPEl.appendChild(attrSpanEl);
+        attributesDivEl.appendChild(attrPEl);
+    }
+    return attributesDivEl;
+}
+
 function onBuyProductClicked() {
     alert("added to cart!");
 }
+
