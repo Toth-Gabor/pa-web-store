@@ -9,6 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <c:url value="/style.css" var="styleUrl"/>
     <c:url value="/index.js" var="indexScriptUrl"/>
+    <c:url value="/admin.js" var="adminScriptUrl"/>
     <c:url value="/allProducts.js" var="allProductsScriptUrl"/>
     <c:url value="/product.js" var="productScriptUrl"/>
     <c:url value="/login.js" var="loginScriptUrl"/>
@@ -18,6 +19,7 @@
     <c:url value="/logout.js" var="logoutScriptUrl"/>
     <link rel="stylesheet" type="text/css" href="${styleUrl}">
     <script src="${indexScriptUrl}"></script>
+    <script src="${adminScriptUrl}"></script>
     <script src="${allProductsScriptUrl}"></script>
     <script src="${productScriptUrl}"></script>
     <script src="${loginScriptUrl}"></script>

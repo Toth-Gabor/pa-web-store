@@ -21,6 +21,16 @@ function onLoginButtonClicked() {
 function onLoginResponse() {
     if (this.status === OK) {
         const user = JSON.parse(this.responseText);
+        console.log(user.admin);
+        if (user.admin) {
+            let menuDivEl = document.getElementById("menu");
+            let menuAEl = document.createElement("a");
+            menuAEl.setAttribute("id", "admin");
+            menuAEl.setAttribute("href", "#admin");
+            menuAEl.textContent = "Admin";
+            menuAEl.setAttribute("onclick", "onAdminButtonClicked()");
+            menuDivEl.appendChild(menuAEl);
+        }
         let logInOutButtonEl = document.getElementById("login-logout");
         logInOutButtonEl.textContent = "logOut";
         logInOutButtonEl.setAttribute("onclick", "onLogoutButtonClicked()");
