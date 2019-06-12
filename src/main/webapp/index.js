@@ -105,11 +105,8 @@ function addCartToLocalStorage() {
 function addToCart(product) {
     if (localStorage && localStorage.getItem('cart')) {
         let cart = JSON.parse(localStorage.getItem('cart'));
-
         cart.products.push(product);
-
         localStorage.setItem('cart', JSON.stringify(cart));
-
     }
 }
 

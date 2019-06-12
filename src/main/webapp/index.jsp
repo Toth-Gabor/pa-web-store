@@ -15,7 +15,7 @@
     <c:url value="/login.js" var="loginScriptUrl"/>
     <c:url value="/profile.js" var="profileScriptUrl"/>
     <c:url value="/registration.js" var="registrationScriptUrl"/>
-    <c:url value="/back-to-profile.js" var="backToProfileScriptUrl"/>
+    <c:url value="/cart.js" var="cartScriptUrl"/>
     <c:url value="/logout.js" var="logoutScriptUrl"/>
     <link rel="stylesheet" type="text/css" href="${styleUrl}">
     <script src="${indexScriptUrl}"></script>
@@ -24,7 +24,7 @@
     <script src="${productScriptUrl}"></script>
     <script src="${loginScriptUrl}"></script>
     <script src="${profileScriptUrl}"></script>
-    <script src="${backToProfileScriptUrl}"></script>
+    <script src="${cartScriptUrl}"></script>
     <script src="${registrationScriptUrl}"></script>
     <script src="${logoutScriptUrl}"></script>
     <title>Pa-Web-Store</title>
@@ -41,7 +41,7 @@
 
     <div id="cart">
         <a>User: <span id="user-name">Not logged in</span></a>
-        <a href="#cart" ><i class="fa fa-cart-plus"></i><span id="items"> Empty</span></a>
+        <a href="#cart" onclick="onCartClicked()"><i class="fa fa-cart-plus"></i><span id="items"> Empty</span></a>
     </div>
 </div>
 
@@ -75,6 +75,24 @@
 </div>
 
 <div id="product-content" class="content"></div>
+
+<div id="cart-content" class="hidden content">
+    <h2>Cart</h2>
+    <table>
+        <thead>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        </thead>
+        <tbody id="cart-tbody"></tbody>
+    </table>
+    <h2>Total price: <span id="total-price"></span></h2>
+    <div id="buy-products">
+        <button id="buy-button" onclick="onBuyProductClicked()">Check Out</button>
+    </div>
+</div>
+
 
 </body>
 </html>

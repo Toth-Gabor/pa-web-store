@@ -211,3 +211,12 @@ h1 {
 #desc-spec-wrapper h2{
     margin: 20px;
 }
+
+#cart-content th td{
+    margin: 10px;
+    padding: 10px;
+    text-align: center;
+}
+#cart-content table{
+    border: 1px black;
+}

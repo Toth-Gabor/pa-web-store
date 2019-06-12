@@ -135,7 +135,8 @@ function createSelectQuantityFormDiv(quantity) {
 }
 
 function onBuyProductClicked() {
-
+    alert("Items has been paid!");
+    onHomeButtonClicked();
 }
 
 function onAddToCartClicked() {
