@@ -122,9 +122,9 @@ function createSelectQuantityFormDiv(quantity) {
 
     let selectEl = document.createElement("select"); // select
     for (let i = 0; i < quantity; i++) {
-        let optionEl = document.createElement("option");
-        optionEl.setAttribute("value", "quantity-i");
         let tempQuantity = quantity-i;
+        let optionEl = document.createElement("option");
+        optionEl.value = tempQuantity.toString();
         optionEl.textContent = tempQuantity.toString();
         selectEl.appendChild(optionEl);
     }
