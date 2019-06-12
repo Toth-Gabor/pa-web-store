@@ -96,6 +96,22 @@ function getAuthorization() {
 function setUnauthorized() {
     return localStorage.removeItem('user');
 }
+function addCartToLocalStorage() {
+    let cart = {};
+    cart.products = [];
+    localStorage.setItem('cart', JSON.stringify(cart));
+}
+
+function addToCart(product) {
+    if (localStorage && localStorage.getItem('cart')) {
+        let cart = JSON.parse(localStorage.getItem('cart'));
+
+        cart.products.push(product);
+
+        localStorage.setItem('cart', JSON.stringify(cart));
+
+    }
+}
 
 function onLoad() {
     topNavDivEl = document.getElementById("topnav");
@@ -112,6 +128,9 @@ function onLoad() {
     const logoutButtonEl = document.getElementById('logout-button');
     logoutButtonEl.addEventListener('click', onLogoutButtonClicked);*/
     loadAllProducts();
+    addCartToLocalStorage();
+
+
     if (hasAuthorization()) {
         onProfileLoad(getAuthorization());
     }
