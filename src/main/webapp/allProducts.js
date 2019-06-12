@@ -1,3 +1,7 @@
+function onHomeButtonClicked() {
+    loadAllProducts();
+}
+
 function loadAllProducts() {
     const xhr = new XMLHttpRequest();
     xhr.addEventListener('load', allProductsResponse);
@@ -42,7 +46,7 @@ function appendProducts(product) {
     let productQuantityPEl = document.createElement("p");
 
 
-    productPhotoImageEl.src = product.photoUrl;eft: 10px
+    productPhotoImageEl.src = product.photoUrl;
     photoDivEL.appendChild(productPhotoImageEl);
 
     productBrandPEl.textContent = product.brand;

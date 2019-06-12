@@ -28,7 +28,7 @@
 <body>
 <div id="topnav" class="content">
     <div id="menu">
-        <a class="active" href="#home">Home</a>
+        <a class="active" href="#home" onclick="onHomeButtonClicked()">Home</a>
         <a href="#news">News</a>
         <a href="#contact">Contact</a>
         <a id="login-logout" href="#login" onclick="openLoginForm()">login</a>
