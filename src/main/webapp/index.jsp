@@ -35,18 +35,15 @@
         <a class="active " href="#home" onclick="onHomeButtonClicked()"><i class="fa fa-home"></i> Home</a>
         <a href="#news">News</a>
         <a href="#contact">Contact</a>
+
         <a id="login-logout" href="#login" onclick="openLoginForm()"><i class="fa fa-user"></i><span id="login-logot-text"> login</span></a>
     </div>
 
     <div id="cart">
+        <a>User: <span id="user-name">Not logged in</span></a>
         <a href="#cart" ><i class="fa fa-cart-plus"></i><span id="items"> Empty</span></a>
     </div>
 </div>
-
-<div id="profile-content" class="content">
-    <p><span id="user-name">Not logged in</span></p>
-</div>
-
 
 <div id="login-content" class="content hidden" >
     <img src="photos/avatar.png" class="avatar">
@@ -75,10 +72,6 @@
         <br>
         <button id="registration-button" onclick="onRegistrationClicked()">Submit</button>
     </form>
-</div>
-
-<div id="back-to-profile-content" class="content hidden">
-    <button onclick="onBackToProfileClicked();">Back to profile</button>
 </div>
 
 <div id="product-content" class="content"></div>

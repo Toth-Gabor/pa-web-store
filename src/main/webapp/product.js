@@ -22,6 +22,7 @@ function onProductLoad(productDto) {
     removeAllChildren(productContentDivEL);
     console.log(productDto)
     const product = productDto.product;
+    localStorage.setItem("product", JSON.stringify(product));
     const attributesList = productDto.attributeList;
 
     let productDetailsDiv = document.createElement("div"); // product div
@@ -94,7 +95,7 @@ function onProductLoad(productDto) {
     productDetailsDiv.append(photoDivEL, sideWrapperDivEl);
 
     productContentDivEL.append(productDetailsDiv, bottomWrapperDivEl);
-    showContents(['topnav', 'profile-content', 'product-content']);
+    showContents(['topnav', 'product-content']);
 }
 
 function createAttributesElements(attributesList) {
@@ -121,6 +122,7 @@ function createSelectQuantityFormDiv(quantity) {
     quantityFormEl.setAttributeNode(onSubmit);
 
     let selectEl = document.createElement("select"); // select
+    selectEl.setAttribute("id", "selected-quantity");
     for (let i = 0; i < quantity; i++) {
         let tempQuantity = quantity-i;
         let optionEl = document.createElement("option");
@@ -137,7 +139,21 @@ function onBuyProductClicked() {
 }
 
 function onAddToCartClicked() {
-    alert("added to cart!");
+    let tempProduct = JSON.parse(localStorage.getItem("product"));
+    let quantityEl = document.getElementById("selected-quantity");
+    let quantity = quantityEl.options[quantityEl.selectedIndex].value;
+    let product = {};
+    product.id = tempProduct.id;
+    product.name = tempProduct.name;
+    product.price = tempProduct.price;
+    product.quantity = Number(quantity);
+    let itemsInCartSpanEL = document.getElementById("items");
+    itemsInCartSpanEL.textContent = " " + quantity;
+    addToCart(product);
 
+    alert(quantity + " id: "+product.id+" added to cart!");
+    console.log(product);
 }
+
+
 

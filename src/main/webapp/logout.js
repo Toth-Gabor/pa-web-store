@@ -3,8 +3,9 @@ function onLogoutResponse() {
         setUnauthorized();
         clearMessages();
         let logInOutButtonEl = document.getElementById("login-logout");
-        logInOutButtonEl.textContent = "logIn";
         logInOutButtonEl.setAttribute("onclick", "openLoginForm()");
+        let loginOutSpanEl = document.getElementById("login-logot-text");
+        loginOutSpanEl.textContent = " logIn";
         let adminAEL = document.getElementById("admin");
         if (adminAEL != undefined) {
             adminAEL.remove();
@@ -12,7 +13,7 @@ function onLogoutResponse() {
         const userNameSpandEl = document.getElementById('user-name');
         userNameSpandEl.textContent = "Not logged in";
         loadAllProducts()
-        showContents( 'topnav', 'profile-content', 'product-content');
+        showContents( 'topnav', 'product-content');
     } else {
         onOtherResponse(productContentDivEL, this);
     }

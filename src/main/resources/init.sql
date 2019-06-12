@@ -80,7 +80,7 @@ INSERT INTO users (user_name, email, password, administrator)
 VALUES ('Gábor', 'user1@user1', 'user1', TRUE); -- 1
 
 INSERT INTO users (user_name, email, password)
-VALUES ('Péter', 'user2@user2', 'user2'), -- 2
+VALUES ('Kriszta', 'user2@user2', 'user2'), -- 2
        ('András', 'user2@user3', 'user3'); -- 3
 
 INSERT INTO products (product_name, brand, specification, description, quantity, price, photo_url)
