@@ -1,8 +1,10 @@
 /*
     Database initialization script that runs on every web-application redeployment.
 */
-DROP TRIGGER IF EXISTS product_quantity_check on products;
+DROP TRIGGER IF EXISTS product_quantity_check ON products;
 DROP FUNCTION IF EXISTS product_quantity_check;
+DROP TRIGGER IF EXISTS productId_occurence_check ON attributes_table;
+DROP FUNCTION IF EXISTS productId_occurence_check;
 
 DROP TABLE IF EXISTS users CASCADE;
 DROP TABLE IF EXISTS orders CASCADE;
@@ -75,13 +77,27 @@ AS '
 CREATE TRIGGER product_quantity_check BEFORE INSERT OR UPDATE ON products
     FOR EACH ROW EXECUTE PROCEDURE product_quantity_check();
 
+CREATE FUNCTION productId_occurence_check() RETURNS trigger
+AS '
+    BEGIN
+        IF (SELECT count(product_id) FROM attributes_table WHERE product_id = NEW.product_id) > 5 THEN
+            RAISE EXCEPTION ''Can not be more than 5!'';
+        END IF;
+        RETURN NEW;
+    END; '
+    LANGUAGE plpgsql;
+
+CREATE TRIGGER productId_occurence_check BEFORE INSERT OR UPDATE ON attributes_table
+    FOR EACH ROW EXECUTE PROCEDURE productId_occurence_check();
+
+
 
 INSERT INTO users (user_name, email, password, administrator)
 VALUES ('Gábor', 'user1@user1', 'user1', TRUE); -- 1
 
 INSERT INTO users (user_name, email, password)
 VALUES ('Kriszta', 'user2@user2', 'user2'), -- 2
-       ('András', 'user2@user3', 'user3'); -- 3
+       ('Dorottya', 'user2@user3', 'user3'); -- 3
 
 INSERT INTO products (product_name, brand, specification, description, quantity, price, photo_url)
 VALUES ('EF 50mm F1.8 STM lens', 'Canon',
@@ -112,7 +128,10 @@ VALUES ('EF 50mm F1.8 STM lens', 'Canon',
 
 INSERT INTO attributes_table (att_name, text, num, bool, type, product_id)
 VALUES ('Mount', 'EF', NULL, NULL, 'text', 1),
-       ('test', 'test1', NULL, NULL, 'text', 1),
+       ('test1', 'test1', NULL, NULL, 'text', 1),
+       ('test2', 'test2', NULL, NULL, 'text', 1),
+       ('test3', 'test3', NULL, NULL, 'text', 1),
+       ('test4', 'test4', NULL, NULL, 'text', 1),
        ('Mount', 'EF-S', NULL, NULL, 'text', 2),
        ('Mount', 'EF', NULL, NULL, 'text', 3),
        ('Mount', 'EF', NULL, NULL, 'text', 4),
@@ -120,5 +139,8 @@ VALUES ('Mount', 'EF', NULL, NULL, 'text', 1),
        ('Diameter', NULL, 58, NULL, 'num', 6),
        ('Diameter', NULL, 67, NULL, 'num', 7),
        ('Diameter', NULL, 72, NULL, 'num', 8);
+
+--INSERT INTO attributes_table (att_name, text, num, bool, type, product_id)
+--VALUES ('a','b',null,false,'text',1);
 
 
