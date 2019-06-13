@@ -63,15 +63,17 @@
 </div>
 
 <div id="registration" class="content hidden">
-    <h2>Registration</h2>
+    <img src="photos/avatar.png" class="avatar">
+    <h1>Registration here</h1>
     <form id="reg-form" onsubmit="return false;">
-        <input type="text" name="name" placeholder="Name" required>
-        <br>
-        <input type="text" name="email" placeholder="E-mail" required>
-        <br>
-        <input type="password" name="password" placeholder="Password" required>
-        <br>
+        <p>Name</p>
+        <input type="text" name="name" placeholder="Enter name" required>
+        <p>E-mail</p>
+        <input type="text" name="email" placeholder="Enter email" required>
+        <p>Password</p>
+        <input type="password" name="password" placeholder="Enter password" required>
         <button id="registration-button" onclick="onRegistrationClicked()">Submit</button>
+        <button id="back-button-register" onclick="onHomeButtonClicked()"><i class="fa fa-home"></i> Back</button>
     </form>
 </div>
 
