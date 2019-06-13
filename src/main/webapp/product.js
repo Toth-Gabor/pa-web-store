@@ -148,12 +148,22 @@ function onAddToCartClicked() {
     product.name = tempProduct.name;
     product.price = tempProduct.price;
     product.quantity = Number(quantity);
-    let itemsInCartSpanEL = document.getElementById("items");
-    itemsInCartSpanEL.textContent = " " + quantity;
     addToCart(product);
+
+    let cart = JSON.parse(localStorage.getItem("cart"));
+    let itemsInCartSpanEL = document.getElementById("items");
+    itemsInCartSpanEL.textContent = " " + getAllProductsQuantity(cart.products);
 
     alert(quantity + " id: "+product.id+" added to cart!");
     console.log(product);
+}
+
+function getAllProductsQuantity(products) {
+    let count = 0;
+    for (let i = 0; i < products.length; i++) {
+        count += Number(products[i].quantity);
+    }
+    return count;
 }
 
 
