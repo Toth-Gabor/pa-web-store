@@ -81,7 +81,18 @@ function onOtherResponse(targetEl, xhr) {
 }
 
 function hasAuthorization() {
-    return localStorage.getItem('user') !== null;
+    const xhr = new XMLHttpRequest();
+    xhr.addEventListener('load', function () {
+        if (this.status === OK){
+            const user = JSON.parse(this.responseText);
+            setAuthorization(user);
+        } else {
+            setUnauthorized();
+        }
+    });
+    xhr.addEventListener('error', onNetworkError);
+    xhr.open('GET', 'login');
+    xhr.send();
 }
 
 function setAuthorization(user) {
