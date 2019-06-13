@@ -1,5 +1,5 @@
 function openRegistration() {
-    showContents(['registration']);
+    showContents(['registration', 'topnav']);
 }
 
 function onRegistrationClicked() {
@@ -24,7 +24,7 @@ function onRegistrationClicked() {
 
 function onRegistrationResponse() {
     if (this.status === OK) {
-        showContents(['login-content']);
+        showContents(['login-content', 'topnav']);
         let json = JSON.parse(this.responseText);
         alert(json.message);
     } else {

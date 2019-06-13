@@ -12,6 +12,7 @@ function onLogoutResponse() {
         }
         const userNameSpandEl = document.getElementById('user-name');
         userNameSpandEl.textContent = "Not logged in";
+        clearCart();
         loadAllProducts()
         showContents( ['topnav', 'product-content']);
     } else {
