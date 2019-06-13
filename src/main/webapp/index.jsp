@@ -36,7 +36,8 @@
         <a href="#news">News</a>
         <a href="#contact">Contact</a>
 
-        <a id="login-logout" href="#login" onclick="openLoginForm()"><i class="fa fa-user"></i><span id="login-logot-text"> login</span></a>
+        <a id="login-logout" href="#login" onclick="openLoginForm()"><i class="fa fa-user"></i><span
+                id="login-logot-text"> login</span></a>
     </div>
 
     <div id="cart">
@@ -45,7 +46,7 @@
     </div>
 </div>
 
-<div id="login-content" class="content hidden" >
+<div id="login-content" class="content hidden">
     <img src="photos/avatar.png" class="avatar">
     <h1>Login Here</h1>
     <form id="login-form" onsubmit="return false;">
@@ -92,7 +93,5 @@
         <button id="buy-button" onclick="onBuyProductClicked()">Check Out</button>
     </div>
 </div>
-
-
 </body>
 </html>

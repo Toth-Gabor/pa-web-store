@@ -49,7 +49,6 @@ function showContents(ids) {
             contentEl.classList.add('hidden');
         }
     }
-
 }
 
 function removeAllChildren(el) {

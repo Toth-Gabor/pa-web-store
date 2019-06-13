@@ -45,5 +45,5 @@ function onLoginResponse() {
 }
 
 function openLoginForm() {
-    showContents('login-content');
+    showContents(['topnav', 'login-content']);
 }

@@ -23,6 +23,6 @@ function onCartClicked() {
         }
         let totalPriceSpanEl = document.getElementById("total-price");
         totalPriceSpanEl.innerHTML = "$" + totalPrice + ".00";
-        showContents('cart-content');
+        showContents(['topnav', 'cart-content']);
     }
 }
