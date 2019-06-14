@@ -149,6 +149,16 @@ function addProductQuantity(productId, quantity) {
     localStorage.setItem('cart', JSON.stringify(cart));
 }
 
+function checkProductAdded(productId) {
+    let cart = JSON.parse(localStorage.getItem('cart'));
+    let bool = false;
+    for (let i = 0; i < cart.products.length; i++) {
+        if (productId == cart.products[i].id){
+            bool = true;
+            return bool;
+        }
+    }
+}
 
 function onLoad() {
     topNavDivEl = document.getElementById("topnav");
