@@ -10,14 +10,14 @@ public interface OrderService {
     
     List<Order> getAllOrders() throws SQLException;
     
-    List<Order> getOrdersByUserId(int userId) throws SQLException;
+    List<Order> getOrdersByUserId(String userId) throws SQLException;
     
-    List<Order> getOrdersByProductId(int productId) throws SQLException;
+    List<Order> getOrdersByProductId(String productId) throws SQLException;
     
-    List<Order> getOrdersByDateWhatOlderThan(Timestamp timestamp) throws SQLException;
+    List<Order> getOrdersByDateWhatOlderThan(String timestamp) throws SQLException;
     
-    List<Order> getOrdersByDateWhatYoungerThan(Timestamp timestamp) throws SQLException;
+    List<Order> getOrdersByDateWhatYoungerThan(String timestamp) throws SQLException;
     
-    void cancelOrder(int orderId) throws SQLException;
+    void cancelOrder(String orderId) throws SQLException;
     
 }
