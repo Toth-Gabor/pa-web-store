@@ -103,7 +103,20 @@ function increaseProductQuantity(productId, quantity) {
     localStorage.setItem('cart', JSON.stringify(cart));
 }
 
-
+function reducedProductQuantity(productId, quantity) {
+    let cart = JSON.parse(localStorage.getItem('cart'));
+    for (let i = 0; i < cart.products.length; i++) {
+        if (productId == cart.products[i].id) {
+            if (cart.products[i].quantity >= quantity) {
+                cart.products[i].quantity -= quantity;
+            } else {
+                alert("quantiy can't go below 0!");
+            }
+        }
+    }
+    localStorage.removeItem("cart");
+    localStorage.setItem('cart', JSON.stringify(cart));
+}
 
 function checkProductAdded(productId) {
     let cart = JSON.parse(localStorage.getItem('cart'));
