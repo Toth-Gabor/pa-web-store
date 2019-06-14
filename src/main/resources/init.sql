@@ -39,6 +39,7 @@ CREATE TABLE orders
 (
     order_id SERIAL  NOT NULL PRIMARY KEY,
     user_id  INTEGER NOT NULL,
+    order_date date,
     FOREIGN KEY (user_id) REFERENCES users (user_id) ON DELETE CASCADE
 );
 
@@ -47,7 +48,7 @@ CREATE TABLE line_item
     order_id   INTEGER NOT NULL,
     product_id INTEGER NOT NULL,
     quantity   INTEGER NOT NULL,
-    FOREIGN KEY (order_id) REFERENCES orders (order_id),
+    FOREIGN KEY (order_id) REFERENCES orders (order_id) ON DELETE CASCADE,
     FOREIGN KEY (product_id) REFERENCES products (product_id)
 );
 
