@@ -93,7 +93,14 @@ public class DatabaseOrderDao extends AbstractDao implements OrderDao {
         }
     }
     
-    
+    @Override
+    public void deleteOrder(int orderId) throws SQLException {
+        sql = "DELETE FROM orders WHERE order_id = ?;";
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, orderId);
+            statement.execute();
+        }
+    }
     
     private Order fetchOrder(ResultSet resultSet) throws SQLException {
         int orderId = resultSet.getInt("order_id");
