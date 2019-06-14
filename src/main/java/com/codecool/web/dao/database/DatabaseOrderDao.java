@@ -29,6 +29,23 @@ public class DatabaseOrderDao extends AbstractDao implements OrderDao {
         }
     }
 
+    @Override
+    public List<Order> findOrdersByUserId(int userId) throws SQLException {
+        List<Order> ordersList = new ArrayList<>();
+        sql = "SELECT orders.order_id, user_id, order_date, product_id, quantity FROM orders\n" +
+                "    INNER JOIN line_item ON orders.order_id = line_item.order_id WHERE user_id = ?;";
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, userId);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                while (resultSet.next()) {
+                    ordersList.add(fetchOrder(resultSet));
+                }
+                return ordersList;
+            }
+        }
+    }
+    
+    
     
     private Order fetchOrder(ResultSet resultSet) throws SQLException {
         int orderId = resultSet.getInt("order_id");
