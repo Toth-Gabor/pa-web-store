@@ -71,7 +71,8 @@ function onProductLoad(productDto) {
     addToCartButtonEL.setAttribute("onclick", "onAddToCartClicked()");
     addToCartButtonDivEl.appendChild(addToCartButtonEL);
 
-    sideWrapperDivEl.append(brandDivEL, nameDivEl, quantityDivEl, attributesDivEl, priceDivEl, selectQuantityDivEl, addToCartButtonDivEl); // add detail dives
+    sideWrapperDivEl.append(brandDivEL, nameDivEl, quantityDivEl, attributesDivEl, priceDivEl,
+                            selectQuantityDivEl, addToCartButtonDivEl); // add detail dives
 
     let bottomWrapperDivEl = document.createElement("div");
     bottomWrapperDivEl.setAttribute("id", "desc-spec-wrapper");
@@ -121,7 +122,7 @@ function createSelectQuantityFormDiv(quantity) {
     onSubmit.value = "return false";
     quantityFormEl.setAttributeNode(onSubmit);
 
-    let selectEl = document.createElement("select"); // select
+    let selectEl = document.createElement("select");// select
     selectEl.setAttribute("id", "selected-quantity");
     for (let i = 0; i < quantity; i++) {
         let tempQuantity = quantity-i;
@@ -148,13 +149,18 @@ function onAddToCartClicked() {
     product.name = tempProduct.name;
     product.price = tempProduct.price;
     product.quantity = Number(quantity);
-    addToCart(product);
+
+    if (checkProductAdded(product.id)){
+        addProductQuantity(product.id, product.quantity);
+    } else {
+        addToCart(product);
+    }
 
     let cart = JSON.parse(localStorage.getItem("cart"));
     let itemsInCartSpanEL = document.getElementById("items");
     itemsInCartSpanEL.textContent = " " + getAllProductsQuantity(cart.products);
 
-    alert(quantity + " id: "+product.id+" added to cart!");
+    alert(product.id + " id " + quantity + " piece has been added to cart!");
     console.log(product);
 }
 
