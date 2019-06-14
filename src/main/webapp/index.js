@@ -39,6 +39,13 @@ function clearMessages() {
     }
 }
 
+function snackBar(msg) {
+    let x = document.getElementById("snackbar");
+    x.innerHTML = msg;
+    x.className = "show";
+    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+}
+
 function showContents(ids) {
     const contentEls = document.getElementsByClassName('content');
     for (let i = 0; i < contentEls.length; i++) {

@@ -1,3 +1,3 @@
 function onAdminButtonClicked() {
-    alert("Under construction!");
+    snackBar("Under construction!");
 }

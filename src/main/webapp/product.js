@@ -174,10 +174,6 @@ function createSelectQuantityFormDiv(quantity) {
     return quantityDivEl;
 }
 
-function onBuyProductClicked() {
-    alert("Items has been paid!");
-    onHomeButtonClicked();
-}
 
 function onAddToCartClicked() {
     let tempProduct = JSON.parse(localStorage.getItem("product"));
@@ -197,9 +193,7 @@ function onAddToCartClicked() {
     let cart = JSON.parse(localStorage.getItem("cart"));
     let itemsInCartSpanEL = document.getElementById("items");
     itemsInCartSpanEL.textContent = " " + getAllProductsQuantity(cart.products);
-
-    alert(product.id + " id " + quantity + " piece has been added to cart!");
-    console.log(product);
+    snackBar(product.id + " id " + quantity + " piece has been added to cart!");
 }
 
 function getAllProductsQuantity(products) {

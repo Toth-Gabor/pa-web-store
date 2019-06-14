@@ -3,7 +3,7 @@ function onCartClicked() {
     let cart = JSON.parse(localStorage.getItem("cart"));
     let products = cart.products;
     if (products.length == 0) {
-        alert("The Cart is Empty!");
+        snackBar("The Cart is Empty!");
         onHomeButtonClicked();
     } else {
         let totalPrice = 0;
@@ -18,12 +18,13 @@ function onCartClicked() {
             let tdPriceEl = document.createElement("td");
             tdPriceEl.innerHTML = "$" + products[i].price + ".00";
             let tdQuantityEl = document.createElement("td");
-
-            let selectEl = createQuantitySelectElement(products[i]);
+            tdQuantityEl.innerHTML = products[i].quantity + " pc";
+            let updateQuantityEl = document.createElement("td");
+            let selectEl = createPlusMinusQuantityDiv(localStorage.getItem("quantity-in-store"));
             selectEl.dataset.productId = products[i].id;
-            tdQuantityEl.appendChild(selectEl);
+            updateQuantityEl.appendChild(selectEl);
 
-            trEl.append(tdIdEl, tdNameEl, tdPriceEl, tdQuantityEl);
+            trEl.append(tdIdEl, tdNameEl, tdPriceEl, tdQuantityEl, updateQuantityEl);
             tbodyEL.appendChild(trEl);
             totalPrice += (products[i].price) * (products[i].quantity);
         }
@@ -48,6 +49,11 @@ function createQuantitySelectElement(product) {
         selectEl.appendChild(optionEl);
     }
     return selectEl;
+}
+
+function onCheckOutButtonClicked() {
+    alert("Items has been paid!");
+    onHomeButtonClicked();
 }
 
 function onSelectionMade() {
@@ -110,7 +116,7 @@ function reducedProductQuantity(productId, quantity) {
             if (cart.products[i].quantity >= quantity) {
                 cart.products[i].quantity -= quantity;
             } else {
-                alert("quantiy can't go below 0!");
+                snackBar("quantiy can't go below 0!");
             }
         }
     }
