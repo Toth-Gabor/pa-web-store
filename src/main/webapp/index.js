@@ -138,6 +138,17 @@ function updateProductQuantityInCart(productId, quantity) {
     localStorage.setItem('cart', JSON.stringify(cart));
 }
 
+function addProductQuantity(productId, quantity) {
+    let cart = JSON.parse(localStorage.getItem('cart'));
+    for (let i = 0; i < cart.products.length; i++) {
+        if (productId == cart.products[i].id){
+            cart.products[i].quantity += quantity;
+        }
+    }
+    localStorage.removeItem("cart");
+    localStorage.setItem('cart', JSON.stringify(cart));
+}
+
 
 function onLoad() {
     topNavDivEl = document.getElementById("topnav");
