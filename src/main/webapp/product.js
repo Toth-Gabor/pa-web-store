@@ -151,7 +151,7 @@ function onAddToCartClicked() {
     product.quantity = Number(quantity);
 
     if (checkProductAdded(product.id)){
-        addProductQuantity(product.id, product.quantity);
+        increaseProductQuantity(product.id, product.quantity);
     } else {
         addToCart(product);
     }
