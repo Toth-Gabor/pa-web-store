@@ -22,6 +22,7 @@ function onProductLoad(productDto) {
     removeAllChildren(productContentDivEL);
     console.log(productDto)
     const product = productDto.product;
+    localStorage.setItem("quantity-in-store", product.quantity);
     localStorage.setItem("product", JSON.stringify(product));
     const attributesList = productDto.attributeList;
 
@@ -41,7 +42,7 @@ function onProductLoad(productDto) {
     let productBrandH2El = document.createElement("h2")
     productBrandH2El.textContent = product.brand;
     brandDivEL.appendChild(productBrandH2El);
-    
+
     let nameDivEl = document.createElement("div"); // name
     let productNamePEl = document.createElement("p");
     productNamePEl.textContent = product.name;
@@ -51,7 +52,7 @@ function onProductLoad(productDto) {
     let productQuantityPEl = document.createElement("p");
     productQuantityPEl.textContent = "In stock: " + product.quantity;
     quantityDivEl.appendChild(productQuantityPEl);
-    
+
     let attributesDivEl = createAttributesElements(attributesList); // attributes
 
     let priceDivEl = document.createElement("div"); // price
@@ -60,19 +61,16 @@ function onProductLoad(productDto) {
     productPricePEl.textContent = "$ " + product.price + ".00";
     priceDivEl.appendChild(productPricePEl);
 
-    let selectQuantityDivEl = createSelectQuantityFormDiv(product.quantity); // select quantity
-    selectQuantityDivEl.setAttribute("id", "select-quantity-div");
+    let plusMinusQuantityDivEL = createPlusMinusQuantityDiv(product.quantity); // quantity
 
-    let addToCartButtonDivEl = document.createElement("div"); // add to cart button
-    addToCartButtonDivEl.setAttribute("id", "add-to-cart");
-    let addToCartButtonEL = document.createElement("p");
+    let addToCartButtonEL = document.createElement("a");  // add to cart button
     addToCartButtonEL.setAttribute("id", "add-to-cart-button");
     addToCartButtonEL.textContent = "Add to Cart";
     addToCartButtonEL.setAttribute("onclick", "onAddToCartClicked()");
-    addToCartButtonDivEl.appendChild(addToCartButtonEL);
+    plusMinusQuantityDivEL.appendChild(addToCartButtonEL);
 
-    sideWrapperDivEl.append(brandDivEL, nameDivEl, quantityDivEl, attributesDivEl, priceDivEl,
-                            selectQuantityDivEl, addToCartButtonDivEl); // add detail dives
+    sideWrapperDivEl.append(brandDivEL, nameDivEl, quantityDivEl,
+                    attributesDivEl, priceDivEl, plusMinusQuantityDivEL); // add detail dives
 
     let bottomWrapperDivEl = document.createElement("div");
     bottomWrapperDivEl.setAttribute("id", "desc-spec-wrapper");
@@ -101,7 +99,7 @@ function onProductLoad(productDto) {
 
 function createAttributesElements(attributesList) {
     let attributesDivEl = document.createElement("div");
-    for (let i = 0; i <attributesList.length; i++) {
+    for (let i = 0; i < attributesList.length; i++) {
         let attrPEl = document.createElement("p");
         attrPEl.textContent = attributesList[i].name;
         let attrSpanEl = document.createElement("span");
@@ -115,6 +113,47 @@ function createAttributesElements(attributesList) {
     }
     return attributesDivEl;
 }
+
+function createPlusMinusQuantityDiv(quantity) {
+    let inputGroupDivEl = document.createElement("div");
+    inputGroupDivEl.setAttribute("class", "input-group");
+
+    let minusButtonInputEl = document.createElement("input"); // minus button
+    minusButtonInputEl.setAttribute("type", "button");
+    minusButtonInputEl.setAttribute("value", "-");
+    minusButtonInputEl.setAttribute("class", "button-minus");
+    minusButtonInputEl.setAttribute("data-field", "quantity");
+    minusButtonInputEl.setAttribute("onclick", "minus()");
+
+
+    let numberInputEl = document.createElement("input"); // quantity-field
+    numberInputEl.setAttribute("type", "number");
+    numberInputEl.setAttribute("step", "1");
+    numberInputEl.max = quantity;
+    numberInputEl.min = "1";
+    numberInputEl.setAttribute("value", "1");
+    numberInputEl.setAttribute("name", "quantity");
+    numberInputEl.setAttribute("class", "quantity-field");
+    numberInputEl.setAttribute("id", "quantity-input");
+
+
+    let plusButtonInputEl = document.createElement("input"); // plus button
+    plusButtonInputEl.setAttribute("type", "button");
+    plusButtonInputEl.setAttribute("value", "+");
+    plusButtonInputEl.setAttribute("class", "button-plus");
+    plusButtonInputEl.setAttribute("data-field", "quantity");
+    plusButtonInputEl.setAttribute("onclick", "plus()");
+
+    inputGroupDivEl.append(minusButtonInputEl, numberInputEl, plusButtonInputEl);
+    return inputGroupDivEl;
+    /*<div class="input-group">
+        <input type="button" value="-" class="button-minus" data-field="quantity">
+        <input type="number" step="1" max="" value="1" name="quantity" class="quantity-field">
+        <input type="button" value="+" class="button-plus" data-field="quantity">
+    </div>*/
+
+}
+
 function createSelectQuantityFormDiv(quantity) {
     let quantityDivEl = document.createElement("div"); // div
     let quantityFormEl = document.createElement("form"); // form
@@ -125,7 +164,7 @@ function createSelectQuantityFormDiv(quantity) {
     let selectEl = document.createElement("select");// select
     selectEl.setAttribute("id", "selected-quantity");
     for (let i = 0; i < quantity; i++) {
-        let tempQuantity = quantity-i;
+        let tempQuantity = quantity - i;
         let optionEl = document.createElement("option");
         optionEl.value = tempQuantity.toString();
         optionEl.textContent = tempQuantity.toString();
@@ -142,15 +181,14 @@ function onBuyProductClicked() {
 
 function onAddToCartClicked() {
     let tempProduct = JSON.parse(localStorage.getItem("product"));
-    let quantityEl = document.getElementById("selected-quantity");
-    let quantity = quantityEl.options[quantityEl.selectedIndex].value;
+    let quantity = document.getElementById("quantity-input").value;
     let product = {};
     product.id = tempProduct.id;
     product.name = tempProduct.name;
     product.price = tempProduct.price;
     product.quantity = Number(quantity);
 
-    if (checkProductAdded(product.id)){
+    if (checkProductAdded(product.id)) {
         increaseProductQuantity(product.id, product.quantity);
     } else {
         addToCart(product);
@@ -170,6 +208,17 @@ function getAllProductsQuantity(products) {
         count += Number(products[i].quantity);
     }
     return count;
+}
+
+/* plus minus quantity script */
+
+function plus() {
+    document.getElementById("quantity-input").stepUp(1);
+
+}
+
+function minus() {
+    document.getElementById("quantity-input").stepDown(1);
 }
 
 
