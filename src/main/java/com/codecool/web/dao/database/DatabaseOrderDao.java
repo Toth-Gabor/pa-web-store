@@ -19,7 +19,7 @@ public class DatabaseOrderDao extends AbstractDao implements OrderDao {
     public List<Order> findAllOrders() throws SQLException {
         List<Order> ordersList = new ArrayList<>();
         sql = "SELECT orders.order_id, user_id, order_date, product_id, quantity FROM orders\n" +
-                "    INNER JOIN line_item ON orders.order_id = line_item.order_id;";
+                "    INNER JOIN line_item ON orders.order_id = line_item.order_id  ORDER BY order_date DESC ;";
         try (Statement statement = connection.createStatement();
              ResultSet resultSet = statement.executeQuery(sql)) {
             while (resultSet.next()) {
@@ -33,7 +33,7 @@ public class DatabaseOrderDao extends AbstractDao implements OrderDao {
     public List<Order> findOrdersByUserId(int userId) throws SQLException {
         List<Order> ordersList = new ArrayList<>();
         sql = "SELECT orders.order_id, user_id, order_date, product_id, quantity FROM orders\n" +
-                "    INNER JOIN line_item ON orders.order_id = line_item.order_id WHERE user_id = ?;";
+                "    INNER JOIN line_item ON orders.order_id = line_item.order_id WHERE user_id = ? ORDER BY order_date DESC ;";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setInt(1, userId);
             try (ResultSet resultSet = statement.executeQuery()) {
@@ -49,7 +49,7 @@ public class DatabaseOrderDao extends AbstractDao implements OrderDao {
     public List<Order> findOrdersByProductId(int productId) throws SQLException {
         List<Order> ordersList = new ArrayList<>();
         sql = "SELECT orders.order_id, user_id, order_date, product_id, quantity FROM orders\n" +
-                "    INNER JOIN line_item ON orders.order_id = line_item.order_id WHERE product_id = ?;";
+                "    INNER JOIN line_item ON orders.order_id = line_item.order_id WHERE product_id = ? ORDER BY order_date DESC ;";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setInt(1, productId);
             try (ResultSet resultSet = statement.executeQuery()) {
@@ -65,7 +65,7 @@ public class DatabaseOrderDao extends AbstractDao implements OrderDao {
     public List<Order> findOrdersByDateWhatOlderThan(Timestamp timestamp) throws SQLException {
         List<Order> ordersList = new ArrayList<>();
         sql = "SELECT orders.order_id, user_id, order_date, product_id, quantity FROM orders\n" +
-                "    INNER JOIN line_item ON orders.order_id = line_item.order_id WHERE order_date < ?;";
+                "    INNER JOIN line_item ON orders.order_id = line_item.order_id WHERE order_date < ? ORDER BY order_date DESC;";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setTimestamp(1, timestamp);
             try (ResultSet resultSet = statement.executeQuery()) {
@@ -81,7 +81,7 @@ public class DatabaseOrderDao extends AbstractDao implements OrderDao {
     public List<Order> findOrdersByDateWhatYoungerThan(Timestamp timestamp) throws SQLException {
         List<Order> ordersList = new ArrayList<>();
         sql = "SELECT orders.order_id, user_id, order_date, product_id, quantity FROM orders\n" +
-                "    INNER JOIN line_item ON orders.order_id = line_item.order_id WHERE order_date > ?;";
+                "    INNER JOIN line_item ON orders.order_id = line_item.order_id WHERE order_date > ? ORDER BY order_date DESC;";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setTimestamp(1, timestamp);
             try (ResultSet resultSet = statement.executeQuery()) {
