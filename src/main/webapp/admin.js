@@ -64,6 +64,26 @@ function loadOrdersByUserId(userId) {
     xhr.send();
 }
 
+function showOrdersByProductIdClicked() {
+    let productId = prompt("Please enter product id:", "1");
+    if (productId == null || productId == "") {
+        showAllOrders();
+    } else {
+        loadOrdersByProductId(productId);
+    }
+}
+
+function loadOrdersByProductId(productId) {
+    const fetch = "productId";
+    const params = new URLSearchParams();
+    params.append("param", productId);
+    params.append("fetch", fetch);
+    const xhr = new XMLHttpRequest();
+    xhr.addEventListener('load', showOrdersResponse);
+    xhr.addEventListener('error', onNetworkError);
+    xhr.open('OPTIONS', 'protected/orders?' + params);
+    xhr.send();
+}
 
 function onOrderClicked() {
     snackBar(this.dataset.orderId.toString() + " Under construction!");
