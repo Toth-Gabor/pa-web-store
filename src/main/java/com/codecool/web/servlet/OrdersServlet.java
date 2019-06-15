@@ -16,7 +16,7 @@ import java.sql.SQLException;
 public class OrdersServlet extends AbstractServlet {
     
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         try (Connection connection = getConnection(req.getServletContext())){
             OrderDao orderDao = new DatabaseOrderDao(connection);
             OrderService orderService = new SimpleOrderService(orderDao);

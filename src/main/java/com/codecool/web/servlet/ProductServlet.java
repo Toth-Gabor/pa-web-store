@@ -7,7 +7,6 @@ import com.codecool.web.dao.database.DatabaseProductDao;
 import com.codecool.web.service.ProductService;
 import com.codecool.web.service.simple.SimpleProductService;
 
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,7 +20,7 @@ public class ProductServlet extends AbstractServlet {
     private static final String SQL_ERROR_CODE_UNIQUE_VIOLATION = "23505";
     
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         try (Connection connection = getConnection(req.getServletContext())){
             String productId = req.getParameter("productId");
             ProductDao productDao = new DatabaseProductDao(connection);

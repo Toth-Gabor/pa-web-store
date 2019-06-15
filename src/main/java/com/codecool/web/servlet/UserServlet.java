@@ -2,7 +2,6 @@ package com.codecool.web.servlet;
 
 import com.codecool.web.dao.UserDao;
 import com.codecool.web.dao.database.DatabaseUserDao;
-import com.codecool.web.model.User;
 import com.codecool.web.service.UserService;
 import com.codecool.web.service.simple.SimpleUserService;
 

@@ -7,7 +7,6 @@ import com.codecool.web.service.LoginService;
 import com.codecool.web.service.exception.ServiceException;
 import com.codecool.web.service.simple.SimpleLoginService;
 
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,7 +18,7 @@ import java.sql.SQLException;
 public final class LoginServlet extends AbstractServlet {
     
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         if (req.getSession().getAttribute("user") != null) {
             sendMessage(resp, HttpServletResponse.SC_OK, req.getSession().getAttribute("user"));
         } else {
