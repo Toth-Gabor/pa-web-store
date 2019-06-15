@@ -54,7 +54,8 @@ function createQuantitySelectElement(product) {
 }
 
 function onCheckOutButtonClicked() {
-    alert("Items has been paid!");
+    snackBar("Items has been paid!");
+    clearCart();
     onHomeButtonClicked();
 }
 
@@ -87,6 +88,7 @@ function clearCart() {
     localStorage.removeItem("cart");
     addCartToLocalStorage();
     removeAllChildren(document.getElementById("cart-tbody"));
+    document.getElementById("items").innerText = " Empty";
 }
 
 function updateProductQuantityInCart(productId, quantity) {
