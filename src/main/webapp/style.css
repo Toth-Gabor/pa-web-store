@@ -192,7 +192,7 @@ h1 {
     width: 120px;
 }
 
-#add-to-cart-button, #checkOut-button, #update-button,
+#add-to-cart-button, #checkOut-button, #update-button, #admin-menu a,
 #list-all-orders, #other-function, #back-to-landingpage {
     background-color: #46b29d;
     cursor: pointer;

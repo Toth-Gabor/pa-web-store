@@ -78,9 +78,10 @@
 <div id="admin-content" class="hidden content">
     <h2>Admin menu</h2>
     <div id="admin-menu">
-        <a id="list-all-orders" onclick="showAllOrders()">All orders</a>
-        <a id="other-function" onclick="otherFunction()">Other</a>
-
+        <a id="orders-userId" onclick="showOrdersByUserIdClicked()">Orders by user id</a>
+        <a id="orders-productId" onclick="showOrdersByProductId()">Orders by product id</a>
+        <a id="orders-former" onclick="showFormerOrdersThan()">Orders older than </a>
+        <a id="orders-later" onclick="showLaterOrdersThan()">Orders younger than</a>
     </div>
     <div id="orders" class="hidden content">
         <h1>Orders</h1>
@@ -94,6 +95,7 @@
             </tr>
             <tbody id="orders-content"></tbody>
         </table>
+        <div id="order"></div>
     </div>
 </div>
 
