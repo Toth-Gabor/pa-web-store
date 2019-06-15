@@ -25,5 +25,16 @@ public class OrdersServlet extends AbstractServlet {
         }
     }
     
-    
+    @Override
+    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        try (Connection connection = getConnection(req.getServletContext())){
+            OrderDao orderDao = new DatabaseOrderDao(connection);
+            OrderService orderService = new SimpleOrderService(orderDao);
+            String orderId = req.getParameter("orderId");
+            orderService.cancelOrder(orderId);
+            sendMessage(resp, HttpServletResponse.SC_OK, orderService.getAllOrders());
+        } catch (SQLException e) {
+            handleSqlError(resp, e);
+        }
+    }
 }
