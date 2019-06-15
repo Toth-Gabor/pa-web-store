@@ -21,12 +21,14 @@ function onCartClicked() {
             tdQuantityEl.innerHTML = products[i].quantity + " pc";
             let updateQuantityEl = document.createElement("td");
             let selectEl = createPlusMinusQuantityDiv(localStorage.getItem("quantity-in-store"));
+
             selectEl.dataset.productId = products[i].id;
             updateQuantityEl.appendChild(selectEl);
 
             trEl.append(tdIdEl, tdNameEl, tdPriceEl, tdQuantityEl, updateQuantityEl);
             tbodyEL.appendChild(trEl);
             totalPrice += (products[i].price) * (products[i].quantity);
+
         }
         let totalPriceSpanEl = document.getElementById("total-price");
         totalPriceSpanEl.textContent = "$" + totalPrice.toString() + ".00";

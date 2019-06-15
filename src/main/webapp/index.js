@@ -11,6 +11,7 @@ let errorContentDivEl;
 let topNavDivEl;
 let registrationDivEl;
 let productContentDivEL;
+let ordersContentDivEl;
 
 function newInfo(targetEl, message) {
     newMessage(targetEl, 'info', message);
@@ -120,7 +121,7 @@ function onLoad() {
     registrationDivEl = document.getElementById("registration");
     productContentDivEL = document.getElementById("product-content");
     profileContentDivEl = document.getElementById('profile-content');
-    backToProfileContentDivEl = document.getElementById('back-to-profile-content');
+    ordersContentDivEl = document.getElementById('admin-content');
     errorContentDivEl = document.getElementById('error-content');
 
     /*const loginButtonEl = document.getElementById('login-button');

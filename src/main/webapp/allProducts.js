@@ -12,7 +12,7 @@ function loadAllProducts() {
 
 function allProductsResponse() {
     if (this.status === OK) {
-        showContents(['topnav', 'profile-content', 'product-content']);
+        showContents(['topnav', 'product-content']);
         onProductListLoad(JSON.parse(this.responseText));
     } else {
         onOtherResponse(productContentDivEL, this);
