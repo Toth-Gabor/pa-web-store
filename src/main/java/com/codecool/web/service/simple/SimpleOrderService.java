@@ -32,13 +32,13 @@ public class SimpleOrderService implements OrderService {
     }
     
     @Override
-    public List<Order> getOrdersByDateWhatOlderThan(String timestamp) throws SQLException {
-        return orderDao.findOrdersByDateWhatOlderThan(Timestamp.valueOf(timestamp));
+    public List<Order> getOrdersByDateWhatFormerThan(String timestamp) throws SQLException {
+        return orderDao.findOrdersByDateWhatFormerThan(Timestamp.valueOf(timestamp));
     }
     
     @Override
-    public List<Order> getOrdersByDateWhatYoungerThan(String timestamp) throws SQLException {
-        return orderDao.findOrdersByDateWhatYoungerThan(Timestamp.valueOf(timestamp));
+    public List<Order> getOrdersByDateWhatLaterThan(String timestamp) throws SQLException {
+        return orderDao.findOrdersByDateWhatLaterThan(Timestamp.valueOf(timestamp));
     }
     
     @Override
@@ -54,9 +54,9 @@ public class SimpleOrderService implements OrderService {
             case "productId":
                 return getOrdersByProductId(param);
             case "older":
-                return getOrdersByDateWhatOlderThan(param);
+                return getOrdersByDateWhatFormerThan(param);
             case "younger":
-                return getOrdersByDateWhatYoungerThan(param);
+                return getOrdersByDateWhatLaterThan(param);
             default:
                 return null;
         }

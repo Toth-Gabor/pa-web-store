@@ -13,9 +13,9 @@ public interface OrderService {
     
     List<Order> getOrdersByProductId(String productId) throws SQLException;
     
-    List<Order> getOrdersByDateWhatOlderThan(String timestamp) throws SQLException;
+    List<Order> getOrdersByDateWhatFormerThan(String timestamp) throws SQLException;
     
-    List<Order> getOrdersByDateWhatYoungerThan(String timestamp) throws SQLException;
+    List<Order> getOrdersByDateWhatLaterThan(String timestamp) throws SQLException;
     
     void cancelOrder(String orderId) throws SQLException;
     

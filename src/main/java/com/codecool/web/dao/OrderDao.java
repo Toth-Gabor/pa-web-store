@@ -14,9 +14,9 @@ public interface OrderDao {
     
     List<Order> findOrdersByProductId(int productId) throws SQLException;
     
-    List<Order> findOrdersByDateWhatOlderThan(Timestamp timestamp) throws SQLException;
+    List<Order> findOrdersByDateWhatFormerThan(Timestamp timestamp) throws SQLException;
     
-    List<Order> findOrdersByDateWhatYoungerThan(Timestamp timestamp) throws SQLException;
+    List<Order> findOrdersByDateWhatLaterThan(Timestamp timestamp) throws SQLException;
     
     void deleteOrder(int orderId) throws SQLException;
     

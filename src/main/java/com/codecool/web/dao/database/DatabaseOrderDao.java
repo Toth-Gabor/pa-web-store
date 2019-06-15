@@ -62,7 +62,7 @@ public class DatabaseOrderDao extends AbstractDao implements OrderDao {
     }
     
     @Override
-    public List<Order> findOrdersByDateWhatOlderThan(Timestamp timestamp) throws SQLException {
+    public List<Order> findOrdersByDateWhatFormerThan(Timestamp timestamp) throws SQLException {
         List<Order> ordersList = new ArrayList<>();
         sql = "SELECT orders.order_id, user_id, order_date, product_id, quantity FROM orders\n" +
                 "    INNER JOIN line_item ON orders.order_id = line_item.order_id WHERE order_date < ? ORDER BY order_date DESC;";
@@ -78,7 +78,7 @@ public class DatabaseOrderDao extends AbstractDao implements OrderDao {
     }
     
     @Override
-    public List<Order> findOrdersByDateWhatYoungerThan(Timestamp timestamp) throws SQLException {
+    public List<Order> findOrdersByDateWhatLaterThan(Timestamp timestamp) throws SQLException {
         List<Order> ordersList = new ArrayList<>();
         sql = "SELECT orders.order_id, user_id, order_date, product_id, quantity FROM orders\n" +
                 "    INNER JOIN line_item ON orders.order_id = line_item.order_id WHERE order_date > ? ORDER BY order_date DESC;";
