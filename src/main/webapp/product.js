@@ -67,7 +67,11 @@ function onProductLoad(productDto) {
     addToCartButtonEL.setAttribute("id", "add-to-cart-button");
     addToCartButtonEL.textContent = "Add to Cart";
     addToCartButtonEL.setAttribute("onclick", "onAddToCartClicked()");
-    plusMinusQuantityDivEL.appendChild(addToCartButtonEL);
+    let backButtonEl = document.createElement("a");
+    backButtonEl.setAttribute("id", "back-to-landingpage");
+    backButtonEl.textContent = "Back";
+    backButtonEl.setAttribute("onclick", "onHomeButtonClicked()");
+    plusMinusQuantityDivEL.append(addToCartButtonEL, backButtonEl);
 
     sideWrapperDivEl.append(brandDivEL, nameDivEl, quantityDivEl,
                     attributesDivEl, priceDivEl, plusMinusQuantityDivEL); // add detail dives
@@ -123,7 +127,7 @@ function createPlusMinusQuantityDiv(quantity) {
     minusButtonInputEl.setAttribute("value", "-");
     minusButtonInputEl.setAttribute("class", "button-minus");
     minusButtonInputEl.setAttribute("data-field", "quantity");
-    minusButtonInputEl.setAttribute("onclick", "minus()");
+    minusButtonInputEl.addEventListener("click", minus);
 
 
     let numberInputEl = document.createElement("input"); // quantity-field
@@ -142,7 +146,7 @@ function createPlusMinusQuantityDiv(quantity) {
     plusButtonInputEl.setAttribute("value", "+");
     plusButtonInputEl.setAttribute("class", "button-plus");
     plusButtonInputEl.setAttribute("data-field", "quantity");
-    plusButtonInputEl.setAttribute("onclick", "plus()");
+    plusButtonInputEl.addEventListener("click", plus);
 
     inputGroupDivEl.append(minusButtonInputEl, numberInputEl, plusButtonInputEl);
     return inputGroupDivEl;
