@@ -3,7 +3,7 @@
 */
 DROP TRIGGER IF EXISTS product_quantity_check ON products;
 DROP FUNCTION IF EXISTS product_quantity_check;
-DROP TRIGGER IF EXISTS productId_occurence_check ON attributes_table;
+DROP TRIGGER IF EXISTS productid_occurence_check ON attributes_table;
 DROP FUNCTION IF EXISTS productId_occurence_check;
 
 DROP TABLE IF EXISTS users CASCADE;
@@ -37,9 +37,9 @@ CREATE TABLE products
 
 CREATE TABLE orders
 (
-    order_id SERIAL  NOT NULL PRIMARY KEY,
-    user_id  INTEGER NOT NULL,
-    order_date date,
+    order_id   SERIAL  NOT NULL PRIMARY KEY,
+    user_id    INTEGER NOT NULL,
+    order_date DATE,
     FOREIGN KEY (user_id) REFERENCES users (user_id) ON DELETE CASCADE
 );
 
@@ -65,31 +65,41 @@ CREATE TABLE attributes_table
     FOREIGN KEY (product_id) REFERENCES products (product_id)
 );
 
-CREATE FUNCTION product_quantity_check() RETURNS trigger
-AS '
+CREATE FUNCTION product_quantity_check() RETURNS TRIGGER
+AS
+'
     BEGIN
-        IF NEW.quantity < 0 THEN
+        IF new.quantity < 0 THEN
             RAISE EXCEPTION ''This product out of stock!'';
         END IF;
-        RETURN NEW;
+        RETURN new;
     END; '
     LANGUAGE plpgsql;
 
-CREATE TRIGGER product_quantity_check BEFORE INSERT OR UPDATE ON products
-    FOR EACH ROW EXECUTE PROCEDURE product_quantity_check();
+CREATE TRIGGER product_quantity_check
+    BEFORE INSERT OR UPDATE
+    ON products
+    FOR EACH ROW
+EXECUTE PROCEDURE product_quantity_check();
 
-CREATE FUNCTION productId_occurence_check() RETURNS trigger
-AS '
+CREATE FUNCTION productId_occurence_check() RETURNS TRIGGER
+AS
+'
     BEGIN
-        IF (SELECT count(product_id) FROM attributes_table WHERE product_id = NEW.product_id) > 5 THEN
+        IF (SELECT count(product_id)
+            FROM attributes_table
+            WHERE product_id = new.product_id) > 5 THEN
             RAISE EXCEPTION ''Can not be more than 5!'';
         END IF;
-        RETURN NEW;
+        RETURN new;
     END; '
     LANGUAGE plpgsql;
 
-CREATE TRIGGER productId_occurence_check BEFORE INSERT OR UPDATE ON attributes_table
-    FOR EACH ROW EXECUTE PROCEDURE productId_occurence_check();
+CREATE TRIGGER productid_occurence_check
+    BEFORE INSERT OR UPDATE
+    ON attributes_table
+    FOR EACH ROW
+EXECUTE PROCEDURE productId_occurence_check();
 
 
 
@@ -98,7 +108,7 @@ VALUES ('Gábor', 'user1@user1', 'user1', TRUE); -- 1
 
 INSERT INTO users (user_name, email, password)
 VALUES ('Kriszta', 'user2@user2', 'user2'), -- 2
-       ('Dorottya', 'user2@user3', 'user3'); -- 3
+       ('Dorottya', 'user3@user3', 'user3'); -- 3
 
 INSERT INTO products (product_name, brand, specification, description, quantity, price, photo_url)
 VALUES ('EF 50mm F1.8 STM lens', 'Canon',
@@ -141,7 +151,14 @@ VALUES ('Mount', 'EF', NULL, NULL, 'text', 1),
        ('Diameter', NULL, 67, NULL, 'num', 7),
        ('Diameter', NULL, 72, NULL, 'num', 8);
 
---INSERT INTO attributes_table (att_name, text, num, bool, type, product_id)
---VALUES ('a','b',null,false,'text',1);
+INSERT INTO orders (user_id, order_date)
+VALUES (1, '2008-01-01 00:00:01'),
+       (1, '2004-01-01 00:00:01'),
+       (2, '2011-01-01 00:00:01');
+
+INSERT INTO line_item (order_id, product_id, quantity)
+VALUES (1, 2, 10),
+       (2, 1, 23),
+       (3, 1, 33);
 
 

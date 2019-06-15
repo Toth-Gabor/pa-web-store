@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
-@WebServlet("protected/orders")
+@WebServlet("/protected/orders")
 public class OrdersServlet extends AbstractServlet {
     
     @Override
