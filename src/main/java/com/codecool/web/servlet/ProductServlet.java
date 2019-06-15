@@ -16,7 +16,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 @WebServlet("/product")
-public class ProductServlet extends  AbstractServlet {
+public class ProductServlet extends AbstractServlet {
     
     private static final String SQL_ERROR_CODE_UNIQUE_VIOLATION = "23505";
     

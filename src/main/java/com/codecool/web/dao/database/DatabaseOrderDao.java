@@ -11,7 +11,7 @@ public class DatabaseOrderDao extends AbstractDao implements OrderDao {
     
     private String sql;
     
-    DatabaseOrderDao(Connection connection) {
+    public DatabaseOrderDao(Connection connection) {
         super(connection);
     }
     
