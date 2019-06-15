@@ -84,6 +84,7 @@
         <a id="orders-former" onclick="showFormerOrdersThan()">Orders older than </a>
         <a id="orders-later" onclick="showLaterOrdersThan()">Orders younger than</a>
     </div>
+    <h3>Click on order to delete</h3>
     <div id="orders" class="hidden content">
         <h1>Orders</h1>
         <table>

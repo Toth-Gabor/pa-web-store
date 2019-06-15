@@ -46,7 +46,7 @@ public class OrdersServlet extends AbstractServlet {
             OrderService orderService = new SimpleOrderService(orderDao);
             String orderId = req.getParameter("orderId");
             orderService.cancelOrder(orderId);
-            sendMessage(resp, HttpServletResponse.SC_OK, "Order has been canceled!");
+            sendMessage(resp, HttpServletResponse.SC_OK, orderId);
         } catch (SQLException e) {
             handleSqlError(resp, e);
         }

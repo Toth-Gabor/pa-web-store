@@ -86,5 +86,33 @@ function loadOrdersByProductId(productId) {
 }
 
 function onOrderClicked() {
+    let orderId = this.dataset.orderId;
+    let reply = prompt("If you want to delete enter 'YES'!:", "YES");
+    if (reply.toUpperCase() == "YES") {
+        onOrderDelete(orderId);
+    } else {
+        showAllOrders();
+    }
     snackBar(this.dataset.orderId.toString() + " Under construction!");
+}
+
+function onOrderDelete(orderId) {
+    const params = new URLSearchParams();
+    params.append("orderId", orderId);
+    const xhr = new XMLHttpRequest();
+    xhr.addEventListener('load', onOrderDeleteResponse);
+    xhr.addEventListener('error', onNetworkError);
+    xhr.open('DELETE', 'protected/orders?' + params);
+    xhr.send();
+}
+
+function onOrderDeleteResponse() {
+    if (this.status === OK) {
+        showContents(['topnav', 'admin-content', 'orders']);
+        showAllOrders();
+        let orderId = JSON.parse(this.responseText);
+        snackBar(orderId.message + " id's order successfully deleted.");
+    } else {
+        onOtherResponse(ordersContentDivEl, this);
+    }
 }
