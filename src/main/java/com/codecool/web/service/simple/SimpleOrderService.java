@@ -45,4 +45,20 @@ public class SimpleOrderService implements OrderService {
     public void cancelOrder(String orderId) throws SQLException {
         orderDao.deleteOrder(Integer.parseInt(orderId));
     }
+    
+    @Override
+    public List<Order> methodSelector(String param, String fetch) throws SQLException {
+        switch (fetch) {
+            case "userId":
+                return getOrdersByUserId(param);
+            case "productId":
+                return getOrdersByProductId(param);
+            case "older":
+                return getOrdersByDateWhatOlderThan(param);
+            case "younger":
+                return getOrdersByDateWhatYoungerThan(param);
+            default:
+                return null;
+        }
+    }
 }

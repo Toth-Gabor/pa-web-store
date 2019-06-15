@@ -3,7 +3,6 @@ package com.codecool.web.service;
 import com.codecool.web.model.Order;
 
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.util.List;
 
 public interface OrderService {
@@ -20,4 +19,5 @@ public interface OrderService {
     
     void cancelOrder(String orderId) throws SQLException;
     
+    List<Order> methodSelector(String param, String fetch) throws SQLException;
 }
