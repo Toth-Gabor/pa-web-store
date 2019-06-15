@@ -77,9 +77,10 @@
 
 <div id="admin-content" class="hidden content">
     <h2>Admin menu</h2>
+    <h3>Click on buttons below to see orders</h3>
     <div id="admin-menu">
         <a id="orders-userId" onclick="showOrdersByUserIdClicked()">Orders by user id</a>
-        <a id="orders-productId" onclick="showOrdersByProductId()">Orders by product id</a>
+        <a id="orders-productId" onclick="showOrdersByProductIdClicked()">Orders by product id</a>
         <a id="orders-former" onclick="showFormerOrdersThan()">Orders older than </a>
         <a id="orders-later" onclick="showLaterOrdersThan()">Orders younger than</a>
     </div>

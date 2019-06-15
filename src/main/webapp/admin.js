@@ -1,26 +1,26 @@
 function onAdminButtonClicked() {
     showContents(['topnav', 'admin-content']);
+    showAllOrders();
 }
 
 function showAllOrders() {
     const xhr = new XMLHttpRequest();
-    xhr.addEventListener('load', showAllOrdersResponse);
+    xhr.addEventListener('load', showOrdersResponse);
     xhr.addEventListener('error', onNetworkError);
     xhr.open('GET', 'protected/orders');
     xhr.send();
-
 }
 
-function showAllOrdersResponse() {
+function showOrdersResponse() {
     if (this.status === OK) {
         showContents(['topnav', 'admin-content', 'orders']);
-        onAllOrdersListLoad(JSON.parse(this.responseText));
+        onOrdersListLoad(JSON.parse(this.responseText));
     } else {
         onOtherResponse(ordersContentDivEl, this);
     }
 }
 
-function onAllOrdersListLoad(orders) {
+function onOrdersListLoad(orders) {
     let ordersContentTbodyEl = document.getElementById("orders-content");
     removeAllChildren(ordersContentTbodyEl);
     for (let i = 0; i < orders.length; i++) {
@@ -42,6 +42,28 @@ function onAllOrdersListLoad(orders) {
         ordersContentTbodyEl.appendChild(trEl);
     }
 }
+
+function showOrdersByUserIdClicked() {
+    let userId = prompt("Please enter user id:", "1");
+    if (userId == null || userId == "") {
+        showAllOrders();
+    } else {
+        loadOrdersByUserId(userId);
+    }
+}
+
+function loadOrdersByUserId(userId) {
+    const fetch = "userId";
+    const params = new URLSearchParams();
+    params.append("param", userId);
+    params.append("fetch", fetch);
+    const xhr = new XMLHttpRequest();
+    xhr.addEventListener('load', showOrdersResponse);
+    xhr.addEventListener('error', onNetworkError);
+    xhr.open('OPTIONS', 'protected/orders?' + params);
+    xhr.send();
+}
+
 
 function onOrderClicked() {
     snackBar(this.dataset.orderId.toString() + " Under construction!");
