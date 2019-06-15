@@ -33,11 +33,9 @@
 <div id="topnav" class="content">
     <div id="menu">
         <a class="active " href="#home" onclick="onHomeButtonClicked()"><i class="fa fa-home"></i> Home</a>
-        <a href="#news">News</a>
-        <a href="#contact">Contact</a>
-
-        <a id="login-logout" href="#login" onclick="openLoginForm()"><i class="fa fa-user"></i><span
-                id="login-logot-text"> login</span></a>
+        <a id="login-logout" href="#login" onclick="openLoginForm()"><i class="fa fa-user"></i>
+            <span id="login-logot-text"> login</span>
+        </a>
     </div>
 
     <div id="cart">
@@ -77,23 +75,48 @@
     </form>
 </div>
 
+<div id="admin-content" class="hidden content">
+    <h2>Admin menu</h2>
+    <div id="admin-menu">
+        <a id="list-all-orders" onclick="showAllOrders()">All orders</a>
+        <a id="other-function" onclick="otherFunction()">Other</a>
+
+    </div>
+    <div id="orders" class="hidden content">
+        <h1>Orders</h1>
+        <table>
+            <tr>
+                <th>Order id</th>
+                <th>User id</th>
+                <th>Product id</th>
+                <th>Quantity</th>
+                <th>Order Date</th>
+            </tr>
+            <tbody id="orders-content"></tbody>
+        </table>
+    </div>
+</div>
+
 <div id="product-content" class="content"></div>
 
 <div id="cart-content" class="hidden content">
-    <h2>Cart</h2>
+    <h1>Cart</h1>
     <table>
         <thead>
         <th>Id</th>
         <th>Name</th>
         <th>Price</th>
         <th>Quantity</th>
+        <th>Update</th>
         </thead>
         <tbody id="cart-tbody"></tbody>
     </table>
-    <h2>Total price: <span id="total-price"></span></h2>
     <div id="buy-products">
-        <button id="buy-button" onclick="onBuyProductClicked()">Check Out</button>
+        <h2>Total price: <span id="total-price"></span></h2>
+        <a id="checkOut-button" onclick="onCheckOutButtonClicked()">Check Out</a>
+        <a id="update-button" onclick="">Update</a>
     </div>
 </div>
+<div id="snackbar"></div>
 </body>
 </html>
