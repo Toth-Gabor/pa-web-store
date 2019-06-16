@@ -40,7 +40,7 @@ function clearMessages() {
     }
 }
 
-function snackBar(msg) {
+function popUpBar(msg) {
     let x = document.getElementById("snackbar");
     x.innerHTML = msg;
     x.className = "show";

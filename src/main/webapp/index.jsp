@@ -118,7 +118,6 @@
     <div id="buy-products">
         <h2>Total price: <span id="total-price"></span></h2>
         <a id="checkOut-button" onclick="onCheckOutButtonClicked()">Check Out</a>
-        <a id="update-button" onclick="">Update</a>
     </div>
 </div>
 <div id="snackbar"></div>

@@ -3,7 +3,7 @@ function onCartClicked() {
     let cart = JSON.parse(localStorage.getItem("cart"));
     let products = cart.products;
     if (products.length == 0) {
-        snackBar("The Cart is Empty!");
+        popUpBar("The Cart is Empty!");
         onHomeButtonClicked();
     } else {
         let totalPrice = 0;
@@ -20,11 +20,13 @@ function onCartClicked() {
             let tdQuantityEl = document.createElement("td");
             tdQuantityEl.innerHTML = products[i].quantity + " pc";
             let updateQuantityEl = document.createElement("td");
-            let selectEl = createPlusMinusQuantityDiv(localStorage.getItem("quantity-in-store"));
-
-            selectEl.dataset.productId = products[i].id;
-            updateQuantityEl.appendChild(selectEl);
-
+            updateQuantityEl.id = "update";
+            let aEl = document.createElement("a");
+            aEl.setAttribute("id", "update-button");
+            aEl.addEventListener("click", onUpdateQuantityClicked);
+            aEl.dataset.productId = products[i].id;
+            aEl.textContent = "update";
+            updateQuantityEl.appendChild(aEl);
             trEl.append(tdIdEl, tdNameEl, tdPriceEl, tdQuantityEl, updateQuantityEl);
             tbodyEL.appendChild(trEl);
             totalPrice += (products[i].price) * (products[i].quantity);
@@ -54,7 +56,7 @@ function createQuantitySelectElement(product) {
 }
 
 function onCheckOutButtonClicked() {
-    snackBar("Items has been paid!");
+    popUpBar("Items has been paid!");
     clearCart();
     onHomeButtonClicked();
 }
@@ -91,6 +93,18 @@ function clearCart() {
     document.getElementById("items").innerText = " Empty";
 }
 
+function onUpdateQuantityClicked() {
+    let newQuantity = prompt("Please enter new quantity!", "1");
+    if (newQuantity == null || newQuantity == "") {
+        onCartClicked();
+    } else {
+        updateProductQuantityInCart(this.dataset.productId, newQuantity);
+        onCartClicked();
+        popUpBar("Updated successfully!");
+    }
+    alert(this.dataset.productId);
+}
+
 function updateProductQuantityInCart(productId, quantity) {
     let cart = JSON.parse(localStorage.getItem('cart'));
     for (let i = 0; i < cart.products.length; i++) {
@@ -120,7 +134,7 @@ function reducedProductQuantity(productId, quantity) {
             if (cart.products[i].quantity >= quantity) {
                 cart.products[i].quantity -= quantity;
             } else {
-                snackBar("quantiy can't go below 0!");
+                popUpBar("quantiy can't go below 0!");
             }
         }
     }

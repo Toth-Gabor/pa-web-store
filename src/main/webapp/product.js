@@ -197,7 +197,7 @@ function onAddToCartClicked() {
     let cart = JSON.parse(localStorage.getItem("cart"));
     let itemsInCartSpanEL = document.getElementById("items");
     itemsInCartSpanEL.textContent = " " + getAllProductsQuantity(cart.products);
-    snackBar(product.id + " id " + quantity + " piece has been added to cart!");
+    popUpBar(product.id + " id " + quantity + " piece has been added to cart!");
 }
 
 function getAllProductsQuantity(products) {
