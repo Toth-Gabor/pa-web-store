@@ -87,13 +87,11 @@ function loadOrdersByProductId(productId) {
 
 function onOrderClicked() {
     let orderId = this.dataset.orderId;
-    let reply = prompt("If you want to delete enter 'YES'!:", "YES");
-    if (reply.toUpperCase() == "YES") {
+    if (confirm('If you want to delete press "OK" button!')) {
         onOrderDelete(orderId);
     } else {
         showAllOrders();
     }
-    snackBar(this.dataset.orderId.toString() + " Under construction!");
 }
 
 function onOrderDelete(orderId) {
@@ -111,7 +109,7 @@ function onOrderDeleteResponse() {
         showContents(['topnav', 'admin-content', 'orders']);
         showAllOrders();
         let orderId = JSON.parse(this.responseText);
-        snackBar(orderId.message + " id's order successfully deleted.");
+        popUpBar(orderId.message + " id's order successfully deleted.");
     } else {
         onOtherResponse(ordersContentDivEl, this);
     }
