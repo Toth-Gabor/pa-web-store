@@ -6,11 +6,14 @@ DROP FUNCTION IF EXISTS product_quantity_check;
 DROP TRIGGER IF EXISTS productid_occurence_check ON attributes_table;
 DROP FUNCTION IF EXISTS productId_occurence_check;
 
+
 DROP TABLE IF EXISTS users CASCADE;
 DROP TABLE IF EXISTS orders CASCADE;
 DROP TABLE IF EXISTS products CASCADE;
 DROP TABLE IF EXISTS attributes_table CASCADE;
 DROP TABLE IF EXISTS line_item CASCADE;
+DROP TABLE IF EXISTS cart CASCADE;
+
 
 CREATE TABLE users
 (
@@ -64,6 +67,17 @@ CREATE TABLE attributes_table
     product_id   INTEGER,
     FOREIGN KEY (product_id) REFERENCES products (product_id)
 );
+
+CREATE TABLE cart
+(
+    product_id       INTEGER        NOT NULL,
+    product_name     TEXT           NOT NULL,
+    product_price    DECIMAL(10, 2) NOT NULL,
+    product_quantity INTEGER        NOT NULL,
+    user_id          INTEGER DEFAULT NULL,
+    FOREIGN KEY (user_id) REFERENCES users (user_id) ON DELETE CASCADE
+);
+
 
 CREATE FUNCTION product_quantity_check() RETURNS TRIGGER
 AS
