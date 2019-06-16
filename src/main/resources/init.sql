@@ -5,7 +5,8 @@ DROP TRIGGER IF EXISTS product_quantity_check ON products;
 DROP FUNCTION IF EXISTS product_quantity_check;
 DROP TRIGGER IF EXISTS productid_occurence_check ON attributes_table;
 DROP FUNCTION IF EXISTS productId_occurence_check;
-
+DROP TRIGGER IF EXISTS product_quantity_check_on_update ON cart;
+DROP FUNCTION IF EXISTS product_quantity_check_on_update;
 
 DROP TABLE IF EXISTS users CASCADE;
 DROP TABLE IF EXISTS orders CASCADE;
@@ -78,6 +79,27 @@ CREATE TABLE cart
     FOREIGN KEY (user_id) REFERENCES users (user_id) ON DELETE CASCADE
 );
 
+CREATE FUNCTION product_quantity_check_on_update() RETURNS TRIGGER
+AS
+'
+    BEGIN
+        IF new.product_quantity > (SELECT quantity
+                                   FROM products
+                                            INNER JOIN cart ON cart.product_id = products.product_id
+                                   WHERE products.product_id = cart.product_id) OR
+           new.product_quantity < 0
+        THEN
+            RAISE EXCEPTION ''This quantity out of range!'';
+        END IF;
+        RETURN new;
+    END; '
+    LANGUAGE plpgsql;
+
+CREATE TRIGGER product_quantity_check_on_update
+    BEFORE UPDATE
+    ON cart
+    FOR EACH ROW
+EXECUTE PROCEDURE product_quantity_check_on_update();
 
 CREATE FUNCTION product_quantity_check() RETURNS TRIGGER
 AS
