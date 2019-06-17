@@ -185,3 +185,31 @@ function onEditProductClicked() {
     let photoUrlEl = document.getElementById("edit-photoUrl");
     photoUrlEl.value = product.photoUrl;
 }
+
+function onUpdateProductFieldClicked() {
+    let productId = localStorage.getItem("edited-productId");
+    let name = document.getElementById("edit-name").value;
+    let brand = document.getElementById("edit-brand").value;
+    let spec = document.getElementById("edit-spec").value;
+    let desc = document.getElementById("edit-desc").value;
+    let price = document.getElementById("edit-price").value;
+    let quantity = document.getElementById("edit-quantity").value;
+    let photoUrl = document.getElementById("edit-photoUrl").value;
+
+    const params = new URLSearchParams();
+    params.append("productId", productId);
+    params.append("name", name);
+    params.append("brand", brand);
+    params.append("spec", spec);
+    params.append("desc", desc);
+    params.append("price", price);
+    params.append("quantity", quantity);
+    params.append("photoUrl", photoUrl);
+    const xhr = new XMLHttpRequest();
+    xhr.addEventListener('load', onOrderDeleteResponse);
+    xhr.addEventListener('error', onNetworkError);
+    xhr.open('DELETE', 'protected/orders?' + params);
+    xhr.send();
+
+    popUpBar("Updated successfully!");
+}
