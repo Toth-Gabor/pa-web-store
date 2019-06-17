@@ -193,7 +193,7 @@ h1 {
 }
 
 #add-to-cart-button, #checkOut-button, #update-button, #admin-menu a,
-#list-all-orders, #other-function, #back-to-landingpage {
+#list-all-orders, #other-function, #back-to-landingpage, #product-list-button {
     background-color: #46b29d;
     cursor: pointer;
     border-radius: 3px;
@@ -287,7 +287,7 @@ td {
     padding: 5px 10px 5px 10px;
 }
 
-#orders tr, #update {
+#orders tr, #update, #admin-product td {
     cursor: pointer;
 }
 

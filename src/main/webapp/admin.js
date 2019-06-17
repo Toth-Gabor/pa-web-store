@@ -130,3 +130,41 @@ function onAdminProductListResponse() {
         onOtherResponse(ordersContentDivEl, this);
     }
 }
+
+function onAdminProductListLoad(productList) {
+    removeAllChildren(document.getElementById("admin-product-content"));
+    for (let i = 0; i < productList.length; i++) {
+        appendAdminProducts(productList[i]);
+    }
+}
+
+function appendAdminProducts(product) {
+    let adminProductsTbodyEl = document.getElementById("admin-product-content");
+    let trEl = document.createElement("tr");
+    trEl.dataset.product = JSON.stringify(product);
+    trEl.addEventListener("click", onProductDetailClicked)
+    let idTdEl = document.createElement("td");
+    idTdEl.textContent = product.id;
+    let nameTdEL = document.createElement("td");
+    nameTdEL.textContent = product.name;
+    let brandTdEl = document.createElement("td");
+    brandTdEl.textContent = product.brand;
+    let specTdEl = document.createElement("td");
+    specTdEl.textContent = product.specification;
+    let descTdEl = document.createElement("td");
+    descTdEl.textContent = product.description;
+    let priceTdEl = document.createElement("td");
+    priceTdEl.textContent = product.price;
+    let quantityTdEl = document.createElement("td");
+    quantityTdEl.textContent = product.quantity;
+    let photoTdEl = document.createElement("td");
+    photoTdEl.textContent = product.photoUrl;
+
+
+    trEl.append(idTdEl, nameTdEL, brandTdEl, specTdEl, descTdEl, priceTdEl, quantityTdEl, photoTdEl);
+    adminProductsTbodyEl.appendChild(trEl);
+}
+
+function onProductDetailClicked() {
+    console.log(this.dataset.product);
+}
