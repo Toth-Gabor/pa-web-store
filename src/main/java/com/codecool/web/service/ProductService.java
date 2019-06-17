@@ -13,4 +13,7 @@ public interface ProductService {
     ProductDto getProductWithAttributes(String productId) throws SQLException;
     
     Product getProduct(String productId) throws SQLException;
+    
+    void updateProductInDb(String productId, String name, String brand, String specification, String description,
+                           String price, String quantity, String photoUrl) throws SQLException;
 }

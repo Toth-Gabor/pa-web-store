@@ -36,4 +36,13 @@ public class SimpleProductService implements ProductService {
     public Product getProduct(String productId) throws SQLException {
         return productDao.findByProductId(Integer.parseInt(productId));
     }
+    
+    @Override
+    public void updateProductInDb(String productId, String name, String brand, String specification,
+                                  String description, String price, String quantity, String photoUrl) throws SQLException {
+        productDao.updateProduct(new Product(Integer.parseInt(productId), name, brand, specification,
+                                        description, Integer.parseInt(price), Integer.parseInt(quantity), photoUrl));
+    }
+    
+    
 }
