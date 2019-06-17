@@ -206,10 +206,18 @@ function onUpdateProductFieldClicked() {
     params.append("quantity", quantity);
     params.append("photoUrl", photoUrl);
     const xhr = new XMLHttpRequest();
-    xhr.addEventListener('load', onOrderDeleteResponse);
+    xhr.addEventListener('load', onUpdateProductFieldResponse);
     xhr.addEventListener('error', onNetworkError);
-    xhr.open('DELETE', 'protected/orders?' + params);
-    xhr.send();
+    xhr.open('POST', 'product');
+    xhr.send(params);
+}
 
-    popUpBar("Updated successfully!");
+function onUpdateProductFieldResponse() {
+    if (this.status === OK) {
+        onAdminProductListClicked();
+        let productId = JSON.parse(this.responseText)
+        popUpBar( productId.message + " id's product updated successfully!");
+    } else {
+        onOtherResponse(ordersContentDivEl, this);
+    }
 }

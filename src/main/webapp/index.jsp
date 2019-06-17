@@ -115,6 +115,7 @@
         </table>
     </div>
     <div id="edit-product" class="hidden content">
+        <h2>Edit fields below and click update!</h2>
         <h3>Name</h3>
         <input id="edit-name" type="text">
         <h3>Brand</h3>
