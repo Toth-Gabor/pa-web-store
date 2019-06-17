@@ -60,7 +60,7 @@ public class DatabaseProductDao extends AbstractDao implements ProductDao {
     @Override
     public void updateProduct(Product product) throws SQLException {
         sql = "UPDATE products SET product_name = ?, brand = ?, specification = ?, " +
-                "description = ?, price = ?, quantity = ?, photo_url = '7' WHERE product_id = ?;";
+                "description = ?, price = ?, quantity = ?, photo_url = ? WHERE product_id = ?;";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setString(1, product.getName());
             statement.setString(2, product.getBrand());

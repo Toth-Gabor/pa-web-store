@@ -142,7 +142,7 @@ function appendAdminProducts(product) {
     let adminProductsTbodyEl = document.getElementById("admin-product-content");
     let trEl = document.createElement("tr");
     trEl.dataset.product = JSON.stringify(product);
-    trEl.addEventListener("click", onProductDetailClicked)
+    trEl.addEventListener("click", onEditProductClicked)
     let idTdEl = document.createElement("td");
     idTdEl.textContent = product.id;
     let nameTdEL = document.createElement("td");
@@ -165,6 +165,23 @@ function appendAdminProducts(product) {
     adminProductsTbodyEl.appendChild(trEl);
 }
 
-function onProductDetailClicked() {
-    console.log(this.dataset.product);
+function onEditProductClicked() {
+    showContents(['topnav', 'admin-content', 'edit-product']);
+    let editProductDivEl = document.getElementById("edit-product");
+    let product = JSON.parse(this.dataset.product);
+    localStorage.setItem("edited-productId", product.id);
+    let nameEl = document.getElementById("edit-name");
+    nameEl.value = product.name;
+    let brandEl = document.getElementById("edit-brand");
+    brandEl.value = product.brand;
+    let specEl = document.getElementById("edit-spec");
+    specEl.value = product.specification;
+    let descEl = document.getElementById("edit-desc");
+    descEl.value = product.description;
+    let priceEl = document.getElementById("edit-price");
+    priceEl.value = product.price;
+    let quantityEl = document.getElementById("edit-quantity");
+    quantityEl.value = product.quantity;
+    let photoUrlEl = document.getElementById("edit-photoUrl");
+    photoUrlEl.value = product.photoUrl;
 }

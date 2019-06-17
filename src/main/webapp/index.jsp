@@ -129,7 +129,8 @@
         <input id="edit-quantity" type="number">
         <h3>Photo url</h3>
         <input id="edit-photoUrl" type="text">
-        <a id="edit-submit-button" onclick="onUpdateProductFieldClicked()" >Click to update</a>
+        <br><br>
+        <a id="edit-submit-button" onclick="onUpdateProductFieldClicked()">Click to update</a>
     </div>
 </div>
 
