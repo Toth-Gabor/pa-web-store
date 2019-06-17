@@ -18,7 +18,7 @@ public class DatabaseProductDao extends AbstractDao implements ProductDao {
     @Override
     public List<Product> findAll() throws SQLException {
         List<Product> products = new ArrayList<>();
-        sql = "SELECT product_id, product_name, brand, specification, description, price, quantity, photo_url FROM products;";
+        sql = "SELECT product_id, product_name, brand, specification, description, price, quantity, photo_url FROM products ORDER BY product_id ASC ;";
         try (Statement statement = connection.createStatement();
              ResultSet resultSet = statement.executeQuery(sql)) {
             while (resultSet.next()) {
@@ -69,6 +69,7 @@ public class DatabaseProductDao extends AbstractDao implements ProductDao {
             statement.setInt(5, product.getPrice());
             statement.setInt(6, product.getQuantity());
             statement.setString(7, product.getPhotoUrl());
+            statement.setInt(8, product.getId());
             statement.execute();
         }
     }
