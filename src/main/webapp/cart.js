@@ -102,7 +102,6 @@ function onUpdateQuantityClicked() {
         onCartClicked();
         popUpBar("Updated successfully!");
     }
-    alert(this.dataset.productId);
 }
 
 function updateProductQuantityInCart(productId, quantity) {

@@ -79,14 +79,14 @@
     <h2>Admin menu</h2>
     <h3>Click on buttons below to see orders</h3>
     <div id="admin-menu">
+        <a id="product-list-button" onclick="onAdminProductListClicked()">Product list</a>
         <a id="orders-userId" onclick="showOrdersByUserIdClicked()">Orders by user id</a>
         <a id="orders-productId" onclick="showOrdersByProductIdClicked()">Orders by product id</a>
-        <a id="orders-former" onclick="showFormerOrdersThan()">Orders older than </a>
+        <a id="orders-former" onclick="showFormerOrdersThan()">Orders older than</a>
         <a id="orders-later" onclick="showLaterOrdersThan()">Orders younger than</a>
     </div>
-    <h3>Click on order to delete</h3>
     <div id="orders" class="hidden content">
-        <h1>Orders</h1>
+        <h3>Click on order to delete</h3>
         <table>
             <tr>
                 <th>Order id</th>
@@ -97,7 +97,22 @@
             </tr>
             <tbody id="orders-content"></tbody>
         </table>
-        <div id="order"></div>
+    </div>
+    <div id="admin-product" class="hidden content">
+        <h3>Click on product to edit</h3>
+        <table>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Brand</th>
+                <th>Specification</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Photo url</th>
+            </tr>
+            <tbody id="admin-product-content"></tbody>
+        </table>
     </div>
 </div>
 
