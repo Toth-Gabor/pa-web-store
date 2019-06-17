@@ -114,6 +114,23 @@
             <tbody id="admin-product-content"></tbody>
         </table>
     </div>
+    <div id="edit-product" class="hidden content">
+        <h3>Name</h3>
+        <input id="edit-name" type="text">
+        <h3>Brand</h3>
+        <input id="edit-brand" type="text">
+        <h3>Specification</h3>
+        <input id="edit-spec" type="text">
+        <h3>Description</h3>
+        <input id="edit-desc" type="text">
+        <h3>Price</h3>
+        <input id="edit-price" type="number">
+        <h3>Quantity</h3>
+        <input id="edit-quantity" type="number">
+        <h3>Photo url</h3>
+        <input id="edit-photoUrl" type="text">
+        <a id="edit-submit-button" onclick="onUpdateProductFieldClicked()" >Click to update</a>
+    </div>
 </div>
 
 <div id="product-content" class="content"></div>
