@@ -68,9 +68,11 @@ function onProductLoad(productDto) {
     addToCartButtonEL.textContent = "Add to Cart";
     addToCartButtonEL.setAttribute("onclick", "onAddToCartClicked()");
     let backButtonEl = document.createElement("a");
+
     backButtonEl.setAttribute("id", "back-to-landingpage");
     backButtonEl.textContent = "Back";
     backButtonEl.setAttribute("onclick", "onHomeButtonClicked()");
+
     plusMinusQuantityDivEL.append(addToCartButtonEL, backButtonEl);
 
     sideWrapperDivEl.append(brandDivEL, nameDivEl, quantityDivEl,

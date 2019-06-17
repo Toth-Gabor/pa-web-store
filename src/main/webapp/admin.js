@@ -1,5 +1,4 @@
 function onAdminButtonClicked() {
-    showContents(['topnav', 'admin-content']);
     showAllOrders();
 }
 
@@ -110,6 +109,23 @@ function onOrderDeleteResponse() {
         showAllOrders();
         let orderId = JSON.parse(this.responseText);
         popUpBar(orderId.message + " id's order successfully deleted.");
+    } else {
+        onOtherResponse(ordersContentDivEl, this);
+    }
+}
+
+function onAdminProductListClicked() {
+    const xhr = new XMLHttpRequest();
+    xhr.addEventListener('load', onAdminProductListResponse);
+    xhr.addEventListener('error', onNetworkError);
+    xhr.open('GET', 'products');
+    xhr.send();
+}
+
+function onAdminProductListResponse() {
+    if (this.status === OK) {
+        showContents(['topnav', 'admin-content', 'admin-product']);
+        onAdminProductListLoad(JSON.parse(this.responseText));
     } else {
         onOtherResponse(ordersContentDivEl, this);
     }
