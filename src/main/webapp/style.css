@@ -193,8 +193,7 @@ h1 {
 }
 
 #add-to-cart-button, #checkOut-button, #update-button, #admin-menu a, #edit-submit-button,
-#list-all-orders, #other-function, #back-to-landingpage, #product-list-button {
-    background-color: #46b29d;
+#list-all-orders, #other-function, #back-to-landingpage, #product-list-button, #add-submit-button {
     cursor: pointer;
     border-radius: 3px;
     padding: 10px 15px;
@@ -208,7 +207,15 @@ h1 {
     font: 400 13px Arial;
 }
 
-#checkOut-button, #back-to-landingpage, #edit-submit-button {
+#add-to-cart-button, #update-button, #orders-former, #orders-later, #orders-productId,
+#edit-submit-button, #orders-userId, #list-all-orders, #other-function, #product-list-button {
+    background-color: #46b29d;
+    margin-left: 3px;
+    margin-top: 3px;
+}
+
+#checkOut-button, #back-to-landingpage, #edit-submit-button, #add-submit-button,
+#product-list-button, #add-product-button {
     background-color: rgba(202, 36, 36, 0.79);
     margin-left: 3px;
     margin-top: 3px;
