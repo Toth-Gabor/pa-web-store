@@ -44,5 +44,9 @@ public class SimpleProductService implements ProductService {
                                         description, Integer.parseInt(price), Integer.parseInt(quantity), photoUrl));
     }
     
-    
+    @Override
+    public void addProductToDb(String name, String brand, String specification, String description, 
+                               String price, String quantity, String photoUrl) throws SQLException {
+        productDao.addProduct(name, brand, specification, description, Integer.parseInt(price), Integer.parseInt(quantity), photoUrl);
+    }
 }

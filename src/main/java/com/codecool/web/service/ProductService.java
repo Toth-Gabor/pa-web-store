@@ -16,4 +16,7 @@ public interface ProductService {
     
     void updateProductInDb(String productId, String name, String brand, String specification, String description,
                            String price, String quantity, String photoUrl) throws SQLException;
+    
+    void addProductToDb (String name, String brand, String specification, String description,
+                         String price, String quantity, String photoUrl) throws SQLException ;
 }
