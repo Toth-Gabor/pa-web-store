@@ -80,10 +80,11 @@
     <h3>Click on buttons below to see orders</h3>
     <div id="admin-menu">
         <a id="product-list-button" onclick="onAdminProductListClicked()">Product list</a>
+        <a id="add-product-button" onclick="showAddProductFields()">Add product</a>
         <a id="orders-userId" onclick="showOrdersByUserIdClicked()">Orders by user id</a>
         <a id="orders-productId" onclick="showOrdersByProductIdClicked()">Orders by product id</a>
-        <a id="orders-former" onclick="showFormerOrdersThan()">Orders older than</a>
-        <a id="orders-later" onclick="showLaterOrdersThan()">Orders younger than</a>
+        <a id="orders-former" onclick="showFormerOrdersThan()">Orders former than</a>
+        <a id="orders-later" onclick="showLaterOrdersThan()">Orders later than</a>
     </div>
     <div id="orders" class="hidden content">
         <h3>Click on order to delete</h3>
@@ -132,6 +133,27 @@
         <input id="edit-photoUrl" type="text">
         <br><br>
         <a id="edit-submit-button" onclick="onUpdateProductFieldClicked()">Click to update</a>
+        <br><br>
+    </div>
+    <div id="add-product" class="hidden content">
+        <h2>Fill all fields below and click add button!</h2>
+        <h3>Name</h3>
+        <input id="add-name" type="text">
+        <h3>Brand</h3>
+        <input id="add-brand" type="text">
+        <h3>Specification</h3>
+        <input id="add-spec" type="text">
+        <h3>Description</h3>
+        <input id="add-desc" type="text">
+        <h3>Price</h3>
+        <input id="add-price" type="number">
+        <h3>Quantity</h3>
+        <input id="add-quantity" type="number">
+        <h3>Photo url</h3>
+        <input id="add-photoUrl" type="text">
+        <br><br>
+        <a id="add-submit-button" onclick="onAddProductClicked()">Click to add</a>
+        <br><br>
     </div>
 </div>
 
