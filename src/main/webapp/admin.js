@@ -167,7 +167,6 @@ function appendAdminProducts(product) {
 
 function onEditProductClicked() {
     showContents(['topnav', 'admin-content', 'edit-product']);
-    let editProductDivEl = document.getElementById("edit-product");
     let product = JSON.parse(this.dataset.product);
     localStorage.setItem("edited-productId", product.id);
     let nameEl = document.getElementById("edit-name");
@@ -208,8 +207,8 @@ function onUpdateProductFieldClicked() {
     const xhr = new XMLHttpRequest();
     xhr.addEventListener('load', onUpdateProductFieldResponse);
     xhr.addEventListener('error', onNetworkError);
-    xhr.open('POST', 'product');
-    xhr.send(params);
+    xhr.open('PUT', 'product?' + params.toString());
+    xhr.send();
 }
 
 function onUpdateProductFieldResponse() {
@@ -217,6 +216,43 @@ function onUpdateProductFieldResponse() {
         onAdminProductListClicked();
         let productId = JSON.parse(this.responseText)
         popUpBar( productId.message + " id's product updated successfully!");
+    } else {
+        onOtherResponse(ordersContentDivEl, this);
+    }
+}
+
+function showAddProductFields() {
+    showContents(['topnav', 'admin-content', 'add-product']);
+}
+
+function onAddProductClicked() {
+    let name = document.getElementById("add-name").value;
+    let brand = document.getElementById("add-brand").value;
+    let spec = document.getElementById("add-spec").value;
+    let desc = document.getElementById("add-desc").value;
+    let price = document.getElementById("add-price").value;
+    let quantity = document.getElementById("add-quantity").value;
+    let photoUrl = document.getElementById("add-photoUrl").value;
+
+    const params = new URLSearchParams();
+    params.append("name", name);
+    params.append("brand", brand);
+    params.append("spec", spec);
+    params.append("desc", desc);
+    params.append("price", price);
+    params.append("quantity", quantity);
+    params.append("photoUrl", photoUrl);
+    const xhr = new XMLHttpRequest();
+    xhr.addEventListener('load', addProductResponse);
+    xhr.addEventListener('error', onNetworkError);
+    xhr.open('POST', 'product');
+    xhr.send(params);
+}
+
+function addProductResponse() {
+    if (this.status === OK) {
+        onAdminProductListClicked();
+        popUpBar( "Product has been added successfully!");
     } else {
         onOtherResponse(ordersContentDivEl, this);
     }
