@@ -35,7 +35,31 @@ public class ProductServlet extends AbstractServlet {
     }
     
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        try (Connection connection = getConnection(req.getServletContext())){
+            ProductDao productDao = new DatabaseProductDao(connection);
+            AttributeDao attributeDao = new DatabaseAttributeDao(connection);
+            ProductService productService = new SimpleProductService(productDao, attributeDao);
+    
+            String name = req.getParameter("name");
+            String brand = req.getParameter("brand");
+            String spec = req.getParameter("spec");
+            String desc = req.getParameter("desc");
+            String price = req.getParameter("price");
+            String quantity = req.getParameter("quantity");
+            String photoUrl = req.getParameter("photoUrl");
+        
+            
+            productService.addProductToDb(name, brand, spec, desc, price, quantity, photoUrl);
+            sendMessage(resp, HttpServletResponse.SC_OK, null);
+        
+        } catch (SQLException e) {
+            handleSqlError(resp, e);
+        }
+    }
+    
+    @Override
+    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         try (Connection connection = getConnection(req.getServletContext())){
             String productId = req.getParameter("productId");
             String name = req.getParameter("name");
@@ -45,11 +69,11 @@ public class ProductServlet extends AbstractServlet {
             String price = req.getParameter("price");
             String quantity = req.getParameter("quantity");
             String photoUrl = req.getParameter("photoUrl");
-            
+        
             ProductDao productDao = new DatabaseProductDao(connection);
             AttributeDao attributeDao = new DatabaseAttributeDao(connection);
             ProductService productService = new SimpleProductService(productDao, attributeDao);
-            
+        
             productService.updateProductInDb(productId, name, brand, spec, desc, price, quantity, photoUrl);
             sendMessage(resp, HttpServletResponse.SC_OK, productId);
         
