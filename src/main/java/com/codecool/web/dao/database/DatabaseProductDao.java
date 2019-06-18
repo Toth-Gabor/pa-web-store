@@ -44,7 +44,7 @@ public class DatabaseProductDao extends AbstractDao implements ProductDao {
     
     @Override
     public void addProduct(String name, String brand, String specification, String description, int price, int quantity, String photoUrl) throws SQLException {
-        sql = "INSERT INTO products (product_name, brand, specification, description, price, quantity, photo_url) VALUES (?, ?, ?, ?, ?, ?);";
+        sql = "INSERT INTO products (product_name, brand, specification, description, price, quantity, photo_url) VALUES (?, ?, ?, ?, ?, ?, ?);";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setString(1, name);
             statement.setString(2, brand);
