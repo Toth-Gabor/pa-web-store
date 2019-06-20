@@ -197,4 +197,9 @@ VALUES (1, 2, 10),
        (2, 1, 23),
        (3, 1, 33);
 
+INSERT INTO cart (product_id, product_name, product_price, product_quantity, user_id) VALUES
+        (2,'EF-S 17-55mm f2.8 IS USM', 765, 1, 1),
+        (3,'EF 24-70mm f2.8L II USM', 1789, 4, 1),
+        (5,'Canon Ef front lens cap', 8, 1, 1);
+
 

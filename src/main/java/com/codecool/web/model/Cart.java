@@ -1,7 +1,5 @@
 package com.codecool.web.model;
 
-import java.util.List;
-
 public class Cart {
     
     private int productId;

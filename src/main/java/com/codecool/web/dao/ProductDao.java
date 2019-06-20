@@ -15,5 +15,8 @@ public interface ProductDao {
     
     void updateProduct(Product product) throws SQLException;
     
-    void buyProduct(int productId, int quantity) throws SQLException;
+    void reduceProductQuantity(int productId, int quantity) throws SQLException;
+    
+    void increaseProductQuantity(int productId, int quantity) throws SQLException;
+    
 }
