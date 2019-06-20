@@ -74,7 +74,7 @@ public class DatabaseProductDao extends AbstractDao implements ProductDao {
         }
     }
     
-    private void buyProduct(int productId) throws SQLException {
+    private void reduceQuantity(int productId) throws SQLException {
         sql = "UPDATE products SET quantity = quantity - 1 WHERE product_id = ?;";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setInt(1, productId);
@@ -83,11 +83,27 @@ public class DatabaseProductDao extends AbstractDao implements ProductDao {
     }
     
     @Override
-    public void buyProduct(int productId, int quantity) throws SQLException {
+    public void reduceProductQuantity(int productId, int quantity) throws SQLException {
         for (int i = 0; i < quantity; i++) {
-            buyProduct(productId);
+            reduceQuantity(productId);
         }
     }
+    
+    private void increaseQuantity(int productId) throws SQLException {
+        sql = "UPDATE products SET quantity = quantity + 1 WHERE product_id = ?;";
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, productId);
+            statement.execute();
+        }
+    }
+    
+    @Override
+    public void increaseProductQuantity(int productId, int quantity) throws SQLException {
+        for (int i = 0; i < quantity; i++) {
+            increaseQuantity(productId);
+        }
+    }
+    
     
     private Product fetchProduct(ResultSet resultSet) throws SQLException {
         int productId = resultSet.getInt("product_id");

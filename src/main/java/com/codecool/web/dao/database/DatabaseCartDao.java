@@ -33,7 +33,6 @@ public class DatabaseCartDao extends AbstractDao implements CartDao {
     
     @Override
     public void addProduct(int productId, int quantity, int userId) throws SQLException {
-    
     }
     
     @Override
